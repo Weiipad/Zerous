@@ -23,7 +23,7 @@ public class GameScreen extends Screen
 			}
 		});
 		
-		left = new Button(Resources.LEFT_UP.getWidth(), Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight(), Resources.LEFT_UP, Resources.LEFT_UP);
+		left = new Button(Resources.LEFT_UP.getWidth(), Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight()/2, Resources.LEFT_UP, Resources.LEFT_UP);
 		left.setTouchEvent(new Button.OnTouchEvent()
 		{
 			public void onTouchDown()
@@ -91,9 +91,9 @@ public class GameScreen extends Screen
 			c.drawText(debug + Input.count , 180, 180, paint);
 		
 		c.drawBitmap(Resources.BLOCK_BASIC, 0, 0, null);
-		c.drawBitmap(Resources.BLOCK_BASIC, 15, 0, null);
-		c.drawBitmap(Resources.BLOCK_BASIC, 0, 9, null);
-		c.drawRect(x, y, x + 100, y + 100, paint);
+		c.drawBitmap(Resources.BLOCK_BASIC, Resources.BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE, 0, null);
+		c.drawBitmap(Resources.BLOCK_BASIC, 0, Resources.BLOCK_BASIC.getHeight()/2, null);
+		c.drawBitmap(Resources.I, x, y, paint);
 		pause.draw(c);
 		left.draw(c);
 		right.draw(c);

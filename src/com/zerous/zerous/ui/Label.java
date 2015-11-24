@@ -6,7 +6,7 @@ import com.zerous.zerous.*;
 public class Label extends Ui
 {
 	Button back;
-	float height;
+	public float height;
 	Bitmap src;
 	String text;
 	public Label(String text)

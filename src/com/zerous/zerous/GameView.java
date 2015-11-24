@@ -4,6 +4,7 @@ import android.view.*;
 import android.content.*;
 import android.graphics.*;
 import com.zerous.zerous.screens.*;
+import android.util.*;
 
 public class GameView extends SurfaceView implements Runnable
 {
@@ -18,10 +19,13 @@ public class GameView extends SurfaceView implements Runnable
 	
 	Screen currentScreen;
 	
+	//public android.content.res.Resources ANDROID_RES;
+	
 	public GameScreen gameScreen;
 	public MainScreen mainScreen;
 	public PlayScreen playScreen;
 	public SettingScreen settingScreen;
+	public AboutScreen aboutScreen;
 	
 	
 	public GameView(Context c, Bitmap framebuffer)
@@ -29,7 +33,10 @@ public class GameView extends SurfaceView implements Runnable
 		super(c);
 		holder = this.getHolder();
 		
+		
 		this.framebuffer = framebuffer;
+		
+		//ANDROID_RES = c.getResources();
 		
 		Resources.init(c);
 		
@@ -37,12 +44,13 @@ public class GameView extends SurfaceView implements Runnable
 		gameScreen = new GameScreen(this);
 		playScreen = new PlayScreen(this);
 		settingScreen = new SettingScreen(this);
-		
+		aboutScreen = new AboutScreen(this);
 		
 		
 		p = new Paint();
 		p.setColor(Color.BLACK);
 		
+		Log.i("GAMEVIEW", "Inited");
 	}
 	
 	public void resume()

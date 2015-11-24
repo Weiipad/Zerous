@@ -12,7 +12,7 @@ public class Button extends Ui
 	private static final int COLOR_BUTTON_DOWN = COLOR_BUTTON_UP - 2105376;
 	
 	Point position;
-	Size size;
+	public Size size;
 	String text;
 	
 	Paint textPaint, bug;

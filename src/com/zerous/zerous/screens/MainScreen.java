@@ -6,14 +6,15 @@ import com.zerous.zerous.ui.*;
 
 public class MainScreen extends Screen
 {
-	Button toGame, toSettings;
+	Button toGame, toSettings, toAbout;
 	Button play;
 	public MainScreen(GameView g)
 	{
 		super(g);
 		
 		toGame = new Button(Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, Resources.START_BUTTON_UP, Resources.START_BUTTON_DOWN);
-		toSettings = new Button(Info.SCREEN_WIDTH - Resources.SETTINGS_BUTTON_UP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.SETTINGS_BUTTON_UP.getHeight()/2, Resources.SETTINGS_BUTTON_UP, Resources.SETTINGS_BUTTON_DOWN);
+		toSettings = new Button(Info.SCREEN_WIDTH - Resources.SETTINGS_BUTTON_UP.getWidth()*1.8f, Info.SCREEN_HEIGHT - Resources.SETTINGS_BUTTON_UP.getHeight()/2, Resources.SETTINGS_BUTTON_UP, Resources.SETTINGS_BUTTON_DOWN);
+		toAbout = new Button(Info.SCREEN_WIDTH - Resources.ABOUT_BUTTON_UP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.ABOUT_BUTTON_UP.getHeight()/2, Resources.ABOUT_BUTTON_UP, Resources.ABOUT_BUTTON_DOWN);
 		
 		play = new Button(240, 60, 240, 120);
 		play.setText("一个为了不无聊而准备的按钮");
@@ -41,6 +42,14 @@ public class MainScreen extends Screen
 				game.setScreen(game.gameScreen);
 			}
 		});
+		
+		toAbout.setClickEvent(new Button.OnClickEvent()
+		{
+			public void onClick()
+			{
+				game.setScreen(game.aboutScreen);
+			}
+		});
 	}
 
 	@Override
@@ -53,5 +62,6 @@ public class MainScreen extends Screen
 		play.draw(c);
 		toGame.draw(c);
 		toSettings.draw(c);
+		toAbout.draw(c);
 	}
 }

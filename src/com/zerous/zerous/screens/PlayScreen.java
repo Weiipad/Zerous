@@ -37,7 +37,7 @@ public class PlayScreen extends Screen
 	@Override
 	public void draw(Canvas c)
 	{
-		c.drawColor(Color.BLACK - 0xffa0a0a0);
+		c.drawColor(Color.WHITE + 0xffa0a0a0);
 		c.drawText("你已经无聊到按了这按钮" + a + "下", Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, paint);
 		l.draw(c);
 		btn.draw(c);
