@@ -21,7 +21,8 @@ public class Resources
 	public static Bitmap LABEL;
 	public static Bitmap LEFT_UP;
 	public static Bitmap RIGHT_UP;
-	public static Bitmap QIANJIN;
+	public static Bitmap AHEAD;
+	public static Bitmap BACK;
 	public static Bitmap JUMP;
 	public static Bitmap BLOCK_BASIC;
 	public static Bitmap A_PIXEL;
@@ -43,10 +44,13 @@ public class Resources
 		CHECKBOX_UNCHECKED = FileLoader.loadBitmapFromAssets(c, "gui/check_unchecked.png", Info.GUI_ZOOM);
 		BANNER = FileLoader.loadBitmapFromAssets(c, "gui/banner.png", Info.GUI_ZOOM);
 		LABEL = FileLoader.loadBitmapFromAssets(c, "gui/label.png", Info.SCREEN_WIDTH, Info.GUI_ZOOM);
-		LEFT_UP = FileLoader.loadBitmapFromAssets(c, "gui/left.png", Info.GUI_ZOOM);
-		RIGHT_UP = FileLoader.loadBitmapFromAssets(c, "gui/left.png", -Info.GUI_ZOOM, Info.GUI_ZOOM);
-		QIANJIN = FileLoader.loadBitmapFromAssets(c, "gui/qianjin.png", Info.GUI_ZOOM);
-		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/jump.png", Info.GUI_ZOOM, Info.GUI_ZOOM);
+		LEFT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", Info.GUI_ZOOM);
+		RIGHT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", -Info.GUI_ZOOM, Info.GUI_ZOOM);
+		AHEAD = FileLoader.loadBitmapFromAssets(c, "gui/control/ahead.png", Info.GUI_ZOOM);
+		BACK = FileLoader.loadBitmapFromAssets(c, "gui/control/back.png", Info.GUI_ZOOM);
+		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM);
+		
+		
 		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);
 		Info.PIXEL_SIZE = A_PIXEL.getWidth();
 		BLOCK_BASIC = FileLoader.loadBitmapFromAssets(c, "blockbasic.png", Info.GUI_ZOOM);

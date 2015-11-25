@@ -20,6 +20,8 @@ public class CheckBox extends Ui
 		unchecked = Resources.CHECKBOX_UNCHECKED;
 		this.name = name;
 		size = new Size(checked.getWidth(), checked.getHeight());
+		paint = new Paint();
+		paint.setTextSize(32);
 	}
 	
 	public boolean isChecked()
@@ -51,7 +53,7 @@ public class CheckBox extends Ui
 			src = unchecked;
 			
 		c.drawBitmap(src, position.x - size.w/2, position.y - size.h/2, null);
-		c.drawText(name, position.x - size.w*2, position.y, new Paint());
+		c.drawText(name, position.x - size.w*4, position.y, paint);
 	}
 	
 }

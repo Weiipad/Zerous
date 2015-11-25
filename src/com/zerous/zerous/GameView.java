@@ -19,7 +19,7 @@ public class GameView extends SurfaceView implements Runnable
 	
 	Screen currentScreen;
 	
-	//public android.content.res.Resources ANDROID_RES;
+	public android.content.res.Resources ANDROID_RES;
 	
 	public GameScreen gameScreen;
 	public MainScreen mainScreen;
@@ -36,7 +36,7 @@ public class GameView extends SurfaceView implements Runnable
 		
 		this.framebuffer = framebuffer;
 		
-		//ANDROID_RES = c.getResources();
+		ANDROID_RES = c.getResources();
 		
 		Resources.init(c);
 		
