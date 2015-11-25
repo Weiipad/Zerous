@@ -98,13 +98,14 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					debug = "Jump";
-					try
+					//Oops, I can't use the Toast
+					/*try
 					{
-					Toast.makeText(game.context, "Jump", Toast.LENGTH_SHORT).show();
+						Toast.makeText(game.context, "Jump", Toast.LENGTH_SHORT).show();
 					}catch(Exception e)
 					{
 						
-					}
+					}*/
 				}
 
 				public void onTouchUp()

@@ -30,7 +30,8 @@ public class PlayScreen extends Screen
 				a+=1;
 			}
 		});
-		paint.setTextSize(32);
+		paint.setTextSize(4*Info.GUI_ZOOM);
+		paint.setTextAlign(Paint.Align.CENTER);
 		paint.setAntiAlias(true);
 	}
 
