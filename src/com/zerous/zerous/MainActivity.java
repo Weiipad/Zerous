@@ -27,6 +27,7 @@ public class MainActivity extends Activity
 		
 		gameView = new GameView(this, framebuffer);
         setContentView(gameView);
+		
     }
 
 	@Override

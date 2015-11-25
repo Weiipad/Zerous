@@ -13,7 +13,7 @@ public class Button extends Ui
 	
 	Point position;
 	public Size size;
-	String text;
+	String text = null;
 	
 	Paint textPaint, bug;
 	
@@ -34,6 +34,7 @@ public class Button extends Ui
 		textPaint.setColor(Color.BLACK);
 		bug.setColor(Color.RED);
 		textPaint.setTextAlign(Paint.Align.CENTER);
+		textPaint.setTextSize(32);
 	}
 	
 	public Button(float x, float y, Bitmap up, Bitmap down)
@@ -78,6 +79,7 @@ public class Button extends Ui
 	{
 		boolean a = Input.TOUCH_STATE == Input.TOUCH_STATE_DOWN || Input.TOUCH_STATE == Input.TOUCH_STATE_MOVE;
 		boolean b = MathUtil.isInside(position.x - size.w/2, position.y - size.h/2, size.w, size.h);
+		
 		if(a && b)
 		{
 			if(up == null && down == null)
@@ -103,11 +105,14 @@ public class Button extends Ui
 			}
 		}
 		
+		
+		
 		if(up == null && down == null)
 		{
-			c.drawText(text, position.x, position.y, textPaint);
-			c.drawRect(position.x - size.w/2, position.y - size.h/2, position.x + size.w/2, position.y + size.h/2, paint);
 			
+			c.drawRect(position.x - size.w/2, position.y - size.h/2, position.x + size.w/2, position.y + size.h/2, paint);
+			if(text != null)
+				c.drawText(text, position.x, position.y, textPaint);
 		}
 		else
 		{

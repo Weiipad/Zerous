@@ -5,6 +5,7 @@ import android.content.*;
 import android.graphics.*;
 import com.zerous.zerous.screens.*;
 import android.util.*;
+import android.widget.*;
 
 public class GameView extends SurfaceView implements Runnable
 {
@@ -27,12 +28,16 @@ public class GameView extends SurfaceView implements Runnable
 	public SettingScreen settingScreen;
 	public AboutScreen aboutScreen;
 	
+	public Context context;
 	
 	public GameView(Context c, Bitmap framebuffer)
 	{
 		super(c);
 		holder = this.getHolder();
 		
+		context = c;
+		
+		Toast.makeText(c, "AAA", Toast.LENGTH_LONG).show();
 		
 		this.framebuffer = framebuffer;
 		

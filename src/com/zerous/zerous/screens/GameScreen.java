@@ -4,6 +4,7 @@ import android.graphics.*;
 import com.zerous.zerous.*;
 import com.zerous.zerous.ui.*;
 import com.zerous.zerous.world.*;
+import android.widget.Toast;
 
 public class GameScreen extends Screen
 {
@@ -97,6 +98,13 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					debug = "Jump";
+					try
+					{
+					Toast.makeText(game.context, "Jump", Toast.LENGTH_SHORT).show();
+					}catch(Exception e)
+					{
+						
+					}
 				}
 
 				public void onTouchUp()
