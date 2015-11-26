@@ -6,6 +6,7 @@ import android.graphics.*;
 import com.zerous.zerous.screens.*;
 import android.util.*;
 import android.widget.*;
+import com.zerous.zerous.io.*;
 
 public class GameView extends SurfaceView implements Runnable
 {
@@ -43,7 +44,9 @@ public class GameView extends SurfaceView implements Runnable
 		
 		ANDROID_RES = c.getResources();
 		
+		Utils.init(c);
 		Resources.init(c);
+		FileOutputer.makeDir("/games/com.zerous");
 		
 		mainScreen = new MainScreen(this);
 		gameScreen = new GameScreen(this);
@@ -64,6 +67,7 @@ public class GameView extends SurfaceView implements Runnable
 		setScreen(mainScreen);
 		gt = new Thread(this);
 		gt.start();
+		Utils.makeToast("AAA");
 	}
 	
 	public void pause()
@@ -86,6 +90,7 @@ public class GameView extends SurfaceView implements Runnable
 	@Override
 	public void run()
 	{
+		//Utils.makeToast("ABC");
 		while(running)
 		{
 			if(!holder.getSurface().isValid())

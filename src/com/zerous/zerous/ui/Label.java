@@ -14,7 +14,9 @@ public class Label extends Ui
 		src = Resources.LABEL;
 		this.text = text;
 		height = src.getHeight();
-		back = new Button(height/3 + Resources.BACK_BUTTON_UP.getWidth()/2, height / 3, Resources.BACK_BUTTON_UP, Resources.BACK_BUTTON_DOWN);
+		back = new Button(height/3 + Resources.BACK_BUTTON_UP.getWidth()/2, height / 2, Resources.BACK_BUTTON_UP, Resources.BACK_BUTTON_DOWN);
+		back.size.w += 40;
+		back.size.h += 30;
 		paint = new Paint();
 		paint.setTextAlign(Paint.Align.CENTER);
 		paint.setAntiAlias(true);

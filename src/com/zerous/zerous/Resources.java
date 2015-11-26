@@ -2,6 +2,8 @@ package com.zerous.zerous;
 
 import android.content.*;
 import android.graphics.*;
+import com.zerous.zerous.*;
+import com.zerous.zerous.io.*;
 
 public class Resources
 {
@@ -28,6 +30,14 @@ public class Resources
 	public static Bitmap A_PIXEL;
 	public static Bitmap I;
 	
+	public static class Blocks
+	{
+		public static Bitmap
+		GRASS,
+		DIRT,
+		BRICK;
+	}
+	
 	public static void init(Context c)
 	{
 		START_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/start_up.png", Info.GUI_ZOOM);
@@ -51,12 +61,22 @@ public class Resources
 		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM);
 		
 		
+		
 		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);
 		Info.PIXEL_SIZE = A_PIXEL.getWidth();
 		BLOCK_BASIC = FileLoader.loadBitmapFromAssets(c, "blockbasic.png", Info.GUI_ZOOM);
-		//Info.TILE_WIDTH = BLOCK_BASIC.getWidth();
-		//Info.TILE_HEIGHT = BLOCK_BASIC.getHeight()/2;
+		Info.TILE_WIDTH = BLOCK_BASIC.getWidth();
+		Info.TILE_HEIGHT = BLOCK_BASIC.getHeight();
 		I = FileLoader.loadBitmapFromAssets(c, "image1.png", Info.GUI_ZOOM);
+		
+		initBlocks(c);
+	}
+	
+	public static void initBlocks(Context c)
+	{
+		Blocks.GRASS = FileLoader.loadBitmapFromAssets(c, "blocks/grass.png", Info.GUI_ZOOM);
+		Blocks.DIRT = FileLoader.loadBitmapFromAssets(c, "blocks/dirt.png", Info.GUI_ZOOM);
+		Blocks.BRICK = FileLoader.loadBitmapFromAssets(c, "blocks/brick.png", Info.GUI_ZOOM);
 	}
 	
 	public static Bitmap scale(Bitmap b, float x, float y)

@@ -22,7 +22,7 @@ public class MainActivity extends Activity
 		Display d = getWindowManager().getDefaultDisplay();
 		Info.SCREEN_WIDTH = d.getWidth();
 		Info.SCREEN_HEIGHT = d.getHeight();
-		Info.GUI_ZOOM = Info.SCREEN_WIDTH / 200;
+		Info.GUI_ZOOM = (Info.SCREEN_WIDTH / 16)/16;
 		framebuffer = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.ARGB_4444);
 		
 		gameView = new GameView(this, framebuffer);
@@ -35,6 +35,7 @@ public class MainActivity extends Activity
 	{
 		super.onResume();
 		gameView.resume();
+		Toast.makeText(this, "Resume", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -42,5 +43,21 @@ public class MainActivity extends Activity
 	{
 		super.onPause();
 		gameView.pause();
+		Toast.makeText(this, "Pause", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		// TODO: Implement this method
+		super.onDestroy();
+	}
+	
+	
+	
+	public void makeToast(String text)
+	{
+		//Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+		
 	}
 }

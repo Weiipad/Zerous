@@ -6,7 +6,8 @@ import android.graphics.*;
 public class World extends GameObject
 {
 	public GameView game;
-	public int terrain[][][] = new int[10][10][10];
+	public int terrain[][] = new int[10][10];
+	public float x, y;
 	public World(Screen scr)
 	{
 		game = scr.game;
@@ -17,16 +18,13 @@ public class World extends GameObject
 	{
 		for(int x = 0;x < terrain.length;x++)
 		{
-			for(int z = 0;z < terrain[0][0].length;z++)
+			for(int y = 0;y < terrain[0].length;y++)
 			{
-				for(int y = 0;y < terrain[0].length;y++)
-				{
-					terrain[x][0][z] = 1;
+				terrain[x][y] = 1;
 					
-					if(terrain[x][y][z] == 1)
-					{
-						c.drawBitmap(Resources.BLOCK_BASIC, x*Resources.BLOCK_BASIC.getWidth()-Resources.A_PIXEL.getWidth(), z*Resources.BLOCK_BASIC.getHeight(), null);
-					}
+				if(terrain[x][y] == 1)
+				{
+					c.drawBitmap(Resources.Blocks.BRICK, this.x +x * (Info.TILE_WIDTH - Info.PIXEL_SIZE), this.y + y * (Info.TILE_HEIGHT - Info.PIXEL_SIZE), null);
 				}
 			}
 		}

@@ -3,12 +3,15 @@ package com.zerous.zerous.screens;
 import com.zerous.zerous.*;
 import android.graphics.*;
 import com.zerous.zerous.ui.*;
+import android.os.*;
 
 public class PlayScreen extends Screen
 {
 	Button btn;
 	Label l;
+	SeekBar s;
 	static int a = 0;
+	static int speed = 0;
 	public PlayScreen(GameView g)
 	{
 		super(g);
@@ -27,9 +30,25 @@ public class PlayScreen extends Screen
 		{
 			public void onClick()
 			{
-				a+=1;
+				a+=speed;
+				speed+=1;
 			}
 		});
+		/*btn.setTouchEvent(new Button.OnTouchEvent()
+		{
+			public void onTouchDown()
+			{
+				a+=speed;
+				speed+=1;
+			}
+			
+			public void onTouchUp()
+			{
+				
+			}
+		});*/
+		
+		s = new SeekBar(Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/4, 100*Info.GUI_ZOOM);
 		paint.setTextSize(4*Info.GUI_ZOOM);
 		paint.setTextAlign(Paint.Align.CENTER);
 		paint.setAntiAlias(true);
@@ -39,8 +58,9 @@ public class PlayScreen extends Screen
 	public void draw(Canvas c)
 	{
 		c.drawColor(Color.WHITE + 0xffa0a0a0);
-		c.drawText("你已经无聊到按了这按钮" + a + "下", Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, paint);
+		c.drawText("你已经无聊到按了这按钮" + a + "下" + Environment.getExternalStorageDirectory().getAbsolutePath(), Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, paint);
 		l.draw(c);
 		btn.draw(c);
+		s.draw(c);
 	}
 }

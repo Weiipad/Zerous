@@ -116,7 +116,7 @@ public class Button extends Ui
 		}
 		else
 		{
-			c.drawBitmap(src, position.x - size.w/2, position.y - size.h/2, null);
+			c.drawBitmap(src, position.x - up.getWidth()/2, position.y - up.getHeight()/2, null);
 			if(Settings.DEBUG)
 			{
 				c.drawLine(position.x - size.w/2, position.y - size.h/2, position.x + size.w/2, position.y - size.h/2, bug);

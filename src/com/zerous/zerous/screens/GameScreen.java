@@ -19,6 +19,9 @@ public class GameScreen extends Screen
 		super(g);
 		initUi();
 		
+		this.x = Info.SCREEN_WIDTH/2;
+		this.y = Info.SCREEN_HEIGHT/2;
+		
 		w = new World(this);
 		
 		paint.setTextSize(Info.GUI_ZOOM * 4);
@@ -36,12 +39,13 @@ public class GameScreen extends Screen
 				}
 			});
 
-		left = new Button(Resources.LEFT_UP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight()*1.5f, Resources.LEFT_UP, Resources.LEFT_UP);
+		left = new Button(Resources.LEFT_UP.getWidth(), Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight()*2, Resources.LEFT_UP, Resources.LEFT_UP);
 		left.setTouchEvent(new Button.OnTouchEvent()
 			{
 				public void onTouchDown()
 				{
-					x-=5;
+					//x-=5;
+					w.x+=5;
 				}
 
 				public void onTouchUp()
@@ -50,12 +54,13 @@ public class GameScreen extends Screen
 				}
 			});
 
-		right = new Button(Resources.RIGHT_UP.getWidth()*2.5f, Info.SCREEN_HEIGHT - Resources.RIGHT_UP.getHeight()*1.5f, Resources.RIGHT_UP, Resources.RIGHT_UP);
+		right = new Button(Resources.RIGHT_UP.getWidth()*3, Info.SCREEN_HEIGHT - Resources.RIGHT_UP.getHeight()*2, Resources.RIGHT_UP, Resources.RIGHT_UP);
 		right.setTouchEvent(new Button.OnTouchEvent()
 			{
 				public void onTouchDown()
 				{
-					x+=5;
+					//x+=5;
+					w.x-=5;
 				}
 
 				public void onTouchUp()
@@ -64,12 +69,13 @@ public class GameScreen extends Screen
 				}
 			});
 		
-		ahead = new Button(Resources.AHEAD.getWidth()*1.5f, Info.SCREEN_HEIGHT - Resources.AHEAD.getHeight()*2.5f, Resources.AHEAD, Resources.AHEAD);
+		ahead = new Button(Resources.AHEAD.getWidth()*2, Info.SCREEN_HEIGHT - Resources.AHEAD.getHeight()*3, Resources.AHEAD, Resources.AHEAD);
 		ahead.setTouchEvent(new Button.OnTouchEvent()
 		{
 			public void onTouchDown()
 			{
-				y -= 5;
+				//y -= 5;
+				w.y+=5;
 			}
 			
 			public void onTouchUp()
@@ -78,12 +84,13 @@ public class GameScreen extends Screen
 			}
 		});
 		
-		back = new Button(Resources.BACK.getWidth()*1.5f, Info.SCREEN_HEIGHT -Resources.BACK.getHeight()/2, Resources.BACK, Resources.BACK);
+		back = new Button(Resources.BACK.getWidth()*2, Info.SCREEN_HEIGHT -Resources.BACK.getHeight(), Resources.BACK, Resources.BACK);
 		back.setTouchEvent(new Button.OnTouchEvent()
 		{
 			public void onTouchDown()
 			{
-				y += 5;
+				//y += 5;
+				w.y-=5;
 			}
 			
 			public void onTouchUp()
@@ -98,6 +105,7 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					debug = "Jump";
+					//Utils.makeToast(debug);
 					//Oops, I can't use the Toast
 					/*try
 					{
