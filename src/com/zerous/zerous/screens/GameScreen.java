@@ -14,6 +14,8 @@ public class GameScreen extends Screen
 	String debug;
 	World w;
 	
+	boolean j;
+	
 	public GameScreen(GameView g)
 	{
 		super(g);
@@ -26,6 +28,43 @@ public class GameScreen extends Screen
 		
 		paint.setTextSize(Info.GUI_ZOOM * 4);
 		paint.setAntiAlias(true);
+	}
+	
+	public void draw(Canvas c)
+	{
+		
+		switch(Input.TOUCH_STATE)
+		{
+			case Input.TOUCH_STATE_DOWN:
+				debug = "TOUCH_DOWN";
+				break;
+			case Input.TOUCH_STATE_MOVE:
+				debug = "TOUCH_MOVE";
+				break;
+			case Input.TOUCH_STATE_UP:
+				debug = "TOUCH_UP";
+				break;
+		}
+		
+		c.drawColor(Color.WHITE);
+		
+		
+		w.draw(c);
+		//c.drawBitmap(Resources.BLOCK_BASIC, 0, 0, null);
+		//c.drawBitmap(Resources.BLOCK_BASIC, Resources.BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE, 0, null);
+		//c.drawBitmap(Resources.BLOCK_BASIC, 0, Resources.BLOCK_BASIC.getHeight()/2, null);
+		c.drawBitmap(Resources.I, x, y, paint);
+		
+		jump(j);
+		
+		pause.draw(c);
+		left.draw(c);
+		right.draw(c);
+		jump.draw(c);
+		ahead.draw(c);
+		back.draw(c);
+		if(Settings.DEBUG)
+			c.drawText(debug + Input.count , 180, 180, paint);
 	}
 	
 	public void initUi()
@@ -68,52 +107,14 @@ public class GameScreen extends Screen
 
 				}
 			});
-		
+
 		ahead = new Button(Resources.AHEAD.getWidth()*2, Info.SCREEN_HEIGHT - Resources.AHEAD.getHeight()*3, Resources.AHEAD, Resources.AHEAD);
 		ahead.setTouchEvent(new Button.OnTouchEvent()
-		{
-			public void onTouchDown()
-			{
-				//y -= 5;
-				w.y+=5;
-			}
-			
-			public void onTouchUp()
-			{
-				
-			}
-		});
-		
-		back = new Button(Resources.BACK.getWidth()*2, Info.SCREEN_HEIGHT -Resources.BACK.getHeight(), Resources.BACK, Resources.BACK);
-		back.setTouchEvent(new Button.OnTouchEvent()
-		{
-			public void onTouchDown()
-			{
-				//y += 5;
-				w.y-=5;
-			}
-			
-			public void onTouchUp()
-			{
-				
-			}
-		});
-		
-		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth(), Info.SCREEN_HEIGHT - Resources.JUMP.getHeight(), Resources.JUMP, Resources.JUMP);
-		jump.setTouchEvent(new Button.OnTouchEvent()
 			{
 				public void onTouchDown()
 				{
-					debug = "Jump";
-					//Utils.makeToast(debug);
-					//Oops, I can't use the Toast
-					/*try
-					{
-						Toast.makeText(game.context, "Jump", Toast.LENGTH_SHORT).show();
-					}catch(Exception e)
-					{
-						
-					}*/
+					//y -= 5;
+					w.y+=5;
 				}
 
 				public void onTouchUp()
@@ -121,43 +122,53 @@ public class GameScreen extends Screen
 
 				}
 			});
-			
-		
+
+		back = new Button(Resources.BACK.getWidth()*2, Info.SCREEN_HEIGHT -Resources.BACK.getHeight(), Resources.BACK, Resources.BACK);
+		back.setTouchEvent(new Button.OnTouchEvent()
+			{
+				public void onTouchDown()
+				{
+					//y += 5;
+					w.y-=5;
+				}
+
+				public void onTouchUp()
+				{
+
+				}
+			});
+
+		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth(), Info.SCREEN_HEIGHT - Resources.JUMP.getHeight(), Resources.JUMP, Resources.JUMP);
+		jump.setTouchEvent(new Button.OnTouchEvent()
+			{
+				public void onTouchDown()
+				{
+					debug = "Jump";
+					j = true;
+					//Utils.makeToast(debug);
+					//Oops, I can't use the Toast
+					/*try
+					 {
+					 Toast.makeText(game.context, "Jump", Toast.LENGTH_SHORT).show();
+					 }catch(Exception e)
+					 {
+
+					 }*/
+				}
+
+				public void onTouchUp()
+				{
+					j = false;
+				}
+			});
 	}
 	
-	public void draw(Canvas c)
+	public void jump(boolean jumping)
 	{
-		
-		switch(Input.TOUCH_STATE)
+		int a = 0;
+		if(jumping && a<10)
 		{
-			case Input.TOUCH_STATE_DOWN:
-				debug = "TOUCH_DOWN";
-				break;
-			case Input.TOUCH_STATE_MOVE:
-				debug = "TOUCH_MOVE";
-				break;
-			case Input.TOUCH_STATE_UP:
-				debug = "TOUCH_UP";
-				break;
+			w.y++;
 		}
-		
-		c.drawColor(Color.WHITE);
-		
-		
-		w.draw(c);
-		//c.drawBitmap(Resources.BLOCK_BASIC, 0, 0, null);
-		//c.drawBitmap(Resources.BLOCK_BASIC, Resources.BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE, 0, null);
-		//c.drawBitmap(Resources.BLOCK_BASIC, 0, Resources.BLOCK_BASIC.getHeight()/2, null);
-		c.drawBitmap(Resources.I, x, y, paint);
-		
-		
-		pause.draw(c);
-		left.draw(c);
-		right.draw(c);
-		jump.draw(c);
-		ahead.draw(c);
-		back.draw(c);
-		if(Settings.DEBUG)
-			c.drawText(debug + Input.count , 180, 180, paint);
 	}
 }

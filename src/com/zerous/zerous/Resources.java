@@ -7,6 +7,7 @@ import com.zerous.zerous.io.*;
 
 public class Resources
 {
+	public static Bitmap A_PIXEL;
 	public static Bitmap START_BUTTON_DOWN;
 	public static Bitmap START_BUTTON_UP;
 	public static Bitmap PAUSE_BUTTON_DOWN;
@@ -27,7 +28,6 @@ public class Resources
 	public static Bitmap BACK;
 	public static Bitmap JUMP;
 	public static Bitmap BLOCK_BASIC;
-	public static Bitmap A_PIXEL;
 	public static Bitmap I;
 	
 	public static class Blocks
@@ -65,7 +65,7 @@ public class Resources
 		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);
 		Info.PIXEL_SIZE = A_PIXEL.getWidth();
 		BLOCK_BASIC = FileLoader.loadBitmapFromAssets(c, "blockbasic.png", Info.GUI_ZOOM);
-		Info.TILE_WIDTH = BLOCK_BASIC.getWidth();
+		Info.TILE_WIDTH = BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE;
 		Info.TILE_HEIGHT = BLOCK_BASIC.getHeight();
 		I = FileLoader.loadBitmapFromAssets(c, "image1.png", Info.GUI_ZOOM);
 		

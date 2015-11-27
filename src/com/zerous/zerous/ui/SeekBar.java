@@ -29,9 +29,9 @@ public class SeekBar extends Ui
 			cx = Input.TOUCH_X;
 		}
 		
-		if(Input.TOUCH_STATE == Input.TOUCH_STATE_UP)
+	/*	if(Input.TOUCH_STATE == Input.TOUCH_STATE_UP)
 		{
-		}
+		}*/
 		
 		
 		
