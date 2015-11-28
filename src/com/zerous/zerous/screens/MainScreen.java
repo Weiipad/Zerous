@@ -55,7 +55,7 @@ public class MainScreen extends Screen
 	@Override
 	public void draw(Canvas c)
 	{
-		c.drawColor(Color.WHITE);
+		super.draw(c);
 		c.drawBitmap(Resources.BANNER, Info.SCREEN_WIDTH - Resources.BANNER.getWidth(), Info.SCREEN_HEIGHT - Resources.BANNER.getHeight(), null);
 		
 		play.draw(c);

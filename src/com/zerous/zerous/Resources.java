@@ -36,7 +36,26 @@ public class Resources
 		GRASS,
 		DIRT,
 		BRICK;
+		
+		
+		static Bitmap blocksMap;
+		public static Bitmap[] blocks = new Bitmap[16];
+		
+		public static void init(Context c)
+		{
+			Blocks.GRASS = FileLoader.loadBitmapFromAssets(c, "blocks/grass.png", Info.GUI_ZOOM);
+			Blocks.DIRT = FileLoader.loadBitmapFromAssets(c, "blocks/dirt.png", Info.GUI_ZOOM);
+			Blocks.BRICK = FileLoader.loadBitmapFromAssets(c, "blocks/brick.png", Info.GUI_ZOOM);
+			
+			blocksMap = FileLoader.loadBitmapFromAssets(c, "blocks/terrain1.png");
+			for(int a = 0;a < blocksMap.getWidth()/16;a++)
+			{
+				blocks[a] = Bitmap.createBitmap(blocksMap, a*16, 0, 16, 16);
+				blocks[a] = scale(blocks[a], Info.GUI_ZOOM, Info.GUI_ZOOM);
+			}
+		}
 	}
+	
 	
 	public static void init(Context c)
 	{
@@ -65,19 +84,14 @@ public class Resources
 		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);
 		Info.PIXEL_SIZE = A_PIXEL.getWidth();
 		BLOCK_BASIC = FileLoader.loadBitmapFromAssets(c, "blockbasic.png", Info.GUI_ZOOM);
-		Info.TILE_WIDTH = BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE;
+		Info.TILE_WIDTH = BLOCK_BASIC.getWidth();
 		Info.TILE_HEIGHT = BLOCK_BASIC.getHeight();
 		I = FileLoader.loadBitmapFromAssets(c, "image1.png", Info.GUI_ZOOM);
 		
-		initBlocks(c);
+		Blocks.init(c);
 	}
 	
-	public static void initBlocks(Context c)
-	{
-		Blocks.GRASS = FileLoader.loadBitmapFromAssets(c, "blocks/grass.png", Info.GUI_ZOOM);
-		Blocks.DIRT = FileLoader.loadBitmapFromAssets(c, "blocks/dirt.png", Info.GUI_ZOOM);
-		Blocks.BRICK = FileLoader.loadBitmapFromAssets(c, "blocks/brick.png", Info.GUI_ZOOM);
-	}
+	
 	
 	public static Bitmap scale(Bitmap b, float x, float y)
 	{

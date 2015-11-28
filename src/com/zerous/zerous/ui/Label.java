@@ -16,7 +16,7 @@ public class Label extends Ui
 		height = src.getHeight();
 		back = new Button(height/3 + Resources.BACK_BUTTON_UP.getWidth()/2, height / 2, Resources.BACK_BUTTON_UP, Resources.BACK_BUTTON_DOWN);
 		back.size.w += 2*Info.GUI_ZOOM;
-		back.size.h += Info.GUI_ZOOM;
+		back.size.h += 1.5f*Info.GUI_ZOOM;
 		paint = new Paint();
 		paint.setTextAlign(Paint.Align.CENTER);
 		paint.setAntiAlias(true);
@@ -27,7 +27,7 @@ public class Label extends Ui
 	{
 		back.setClickEvent(click);
 	}
-
+	
 	@Override
 	public void draw(Canvas c)
 	{

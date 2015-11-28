@@ -50,4 +50,23 @@ public class FileLoader
 
 		return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
 	}
+	
+	public static Bitmap loadBitmapFromAssets(Context c, String fileName)
+	{
+		AssetManager assets = c.getAssets();
+		InputStream is = null;
+
+		try
+		{
+			is = assets.open(fileName);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
+		
+		return bitmap;
+	}
 }

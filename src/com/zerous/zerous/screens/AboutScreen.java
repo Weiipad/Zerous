@@ -23,7 +23,7 @@ public class AboutScreen extends Screen
 	@Override
 	public void draw(Canvas c)
 	{
-		c.drawColor(Color.WHITE);
+		super.draw(c);
 		l.draw(c);
 		c.drawText("制作by @weiipad", 0, l.height + 32, paint);
 	}

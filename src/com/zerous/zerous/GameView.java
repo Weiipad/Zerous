@@ -28,6 +28,7 @@ public class GameView extends SurfaceView implements Runnable
 	public PlayScreen playScreen;
 	public SettingScreen settingScreen;
 	public AboutScreen aboutScreen;
+	public DebugScreen debugScreen;
 	
 	public Context context;
 	
@@ -53,6 +54,7 @@ public class GameView extends SurfaceView implements Runnable
 		playScreen = new PlayScreen(this);
 		settingScreen = new SettingScreen(this);
 		aboutScreen = new AboutScreen(this);
+		debugScreen = new DebugScreen(this);
 		
 		
 		p = new Paint();

@@ -16,11 +16,10 @@ public class World extends GameObject
 	@Override
 	public void draw(Canvas c)
 	{
-		terrain[0][0][0] = 1;
-		terrain[0][1][0] = 1;
-		terrain[1][0][0] = 1;
-		terrain[0][0][1] = 1;
-		for(int y =0;y < 5;y++)
+		//c.drawBitmap(Resources.Blocks.blocks[0], 70, 70, null);
+		
+		
+		for(int y =0;y <= 5;y++)
 		{
 			drawXZ(c, y);
 		}
@@ -32,9 +31,32 @@ public class World extends GameObject
 		{
 			for(int z = 0;z < terrain[0][0].length;z++)
 			{
+				if(y <= 4){
+				terrain[x][0][0] = 1;
+				terrain[0][0][z] = 1;
+				terrain[0][y][0] = 2;
+				}
+				else
+				{
+					terrain[0][y][0] = 1;
+				}
+				
+				
+				
+				/*switch(terrain[x][y][z])
+				{
+					case 1:
+						c.drawBitmap(Resources.Blocks.blocks[0], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+						break;
+					case 2:
+						//c.drawBitmap(Resources, this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+				*/
 				if(terrain[x][y][z] == 1)
-					c.drawBitmap(Resources.Blocks.GRASS, this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+					c.drawBitmap(Resources.Blocks.blocks[0], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+				else if(terrain[x][y][z] == 2)
+					c.drawBitmap(Resources.Blocks.blocks[1], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
 			}
 		}
+		
 	}
 }

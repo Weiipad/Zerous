@@ -46,9 +46,7 @@ public class GameScreen extends Screen
 				break;
 		}
 		
-		c.drawColor(Color.WHITE);
-		
-		
+		super.draw(c);
 		w.draw(c);
 		//c.drawBitmap(Resources.BLOCK_BASIC, 0, 0, null);
 		//c.drawBitmap(Resources.BLOCK_BASIC, Resources.BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE, 0, null);
