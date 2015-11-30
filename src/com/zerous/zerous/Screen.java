@@ -13,6 +13,7 @@ public class Screen
 		paint = new Paint();
 		paint.setTextSize(32);
 		paint.setColor(Color.BLACK);
+		paint.setAntiAlias(true);
 		
 		clearColor = Color.WHITE;
 	}

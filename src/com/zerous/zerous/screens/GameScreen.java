@@ -5,6 +5,9 @@ import com.zerous.zerous.*;
 import com.zerous.zerous.ui.*;
 import com.zerous.zerous.world.*;
 import android.widget.Toast;
+import com.zerous.zerous.entity.*;
+import com.zerous.zerous.math.*;
+import com.zerous.zerous.utils.*;
 
 public class GameScreen extends Screen
 {
@@ -13,6 +16,9 @@ public class GameScreen extends Screen
 	
 	String debug;
 	World w;
+	Entity e;
+	
+	FPSCounter fps;
 	
 	boolean j;
 	
@@ -21,6 +27,8 @@ public class GameScreen extends Screen
 		super(g);
 		initUi();
 		
+		fps = new FPSCounter();
+		
 		this.x = Info.SCREEN_WIDTH/2;
 		this.y = Info.SCREEN_HEIGHT/2;
 		
@@ -28,6 +36,7 @@ public class GameScreen extends Screen
 		
 		paint.setTextSize(Info.GUI_ZOOM * 4);
 		paint.setAntiAlias(true);
+		e = new Entity(Resources.I, new Vec3(Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, 0));
 	}
 	
 	public void draw(Canvas c)
@@ -47,13 +56,12 @@ public class GameScreen extends Screen
 		}
 		
 		super.draw(c);
+		//c.drawBitmap(Resources.LOGO, Info.SCREEN_WIDTH/2 - Resources.LOGO.getWidth()/2, Info.SCREEN_HEIGHT - Info.SCREEN_HEIGHT/4, null);
 		w.draw(c);
-		//c.drawBitmap(Resources.BLOCK_BASIC, 0, 0, null);
-		//c.drawBitmap(Resources.BLOCK_BASIC, Resources.BLOCK_BASIC.getWidth() - Info.PIXEL_SIZE, 0, null);
-		//c.drawBitmap(Resources.BLOCK_BASIC, 0, Resources.BLOCK_BASIC.getHeight()/2, null);
-		c.drawBitmap(Resources.I, x, y, paint);
+		e.draw(c);
+		//c.drawBitmap(Resources.I, x, y, paint);
 		
-		jump(j);
+		//jump(j);
 		
 		pause.draw(c);
 		left.draw(c);
@@ -62,7 +70,10 @@ public class GameScreen extends Screen
 		ahead.draw(c);
 		back.draw(c);
 		if(Settings.DEBUG)
-			c.drawText(debug + Input.count , 180, 180, paint);
+		{
+			fps.drawFPS(c);
+			c.drawText(debug + Input.count, 180, 180, paint);
+		}
 	}
 	
 	public void initUi()
@@ -81,7 +92,7 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
-					//x-=5;
+					//e.getPosition().x -=5;
 					w.x+=5;
 				}
 
@@ -96,7 +107,7 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
-					//x+=5;
+					//e.getPosition().x+=5;
 					w.x-=5;
 				}
 
@@ -111,7 +122,7 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
-					//y -= 5;
+					//e.getPosition().z -= 5;
 					w.y+=5;
 				}
 
@@ -126,7 +137,7 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
-					//y += 5;
+					//e.getPosition().z += 5;
 					w.y-=5;
 				}
 
@@ -137,12 +148,12 @@ public class GameScreen extends Screen
 			});
 
 		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth(), Info.SCREEN_HEIGHT - Resources.JUMP.getHeight(), Resources.JUMP, Resources.JUMP);
-		jump.setTouchEvent(new Button.OnTouchEvent()
+		jump.setClickEvent(new Button.OnClickEvent()
 			{
-				public void onTouchDown()
+				public void onClick()
 				{
 					debug = "Jump";
-					j = true;
+					e.getPosition().y -= 10;
 					//Utils.makeToast(debug);
 					//Oops, I can't use the Toast
 					/*try
@@ -152,11 +163,6 @@ public class GameScreen extends Screen
 					 {
 
 					 }*/
-				}
-
-				public void onTouchUp()
-				{
-					j = false;
 				}
 			});
 	}

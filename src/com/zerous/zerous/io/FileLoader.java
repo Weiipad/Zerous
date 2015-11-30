@@ -41,6 +41,7 @@ public class FileLoader
 		catch (IOException e)
 		{
 			e.printStackTrace();
+			
 		}
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);

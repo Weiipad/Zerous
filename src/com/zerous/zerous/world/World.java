@@ -2,26 +2,38 @@ package com.zerous.zerous.world;
 
 import com.zerous.zerous.*;
 import android.graphics.*;
+import java.util.*;
+import com.zerous.zerous.entity.*;
 
 public class World extends GameObject
 {
 	public GameView game;
 	public int terrain[][][] = new int[10][10][10];
 	public float x, y;
+	ArrayList<Entity> entities = new ArrayList<Entity>();
+	
 	public World(Screen scr)
 	{
 		game = scr.game;
 	}
+	
+	public void addEntity(Entity e)
+	{
+		entities.add(e);
+		
+	}
 
 	@Override
 	public void draw(Canvas c)
-	{
-		//c.drawBitmap(Resources.Blocks.blocks[0], 70, 70, null);
-		
-		
+	{	
 		for(int y =0;y <= 5;y++)
 		{
 			drawXZ(c, y);
+		}
+		
+		for(Entity e:entities)
+		{
+			e.draw(c);
 		}
 	}
 	
@@ -41,20 +53,10 @@ public class World extends GameObject
 					terrain[0][y][0] = 1;
 				}
 				
-				
-				
-				/*switch(terrain[x][y][z])
-				{
-					case 1:
-						c.drawBitmap(Resources.Blocks.blocks[0], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
-						break;
-					case 2:
-						//c.drawBitmap(Resources, this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
-				*/
 				if(terrain[x][y][z] == 1)
-					c.drawBitmap(Resources.Blocks.blocks[0], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.GRASS], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
 				else if(terrain[x][y][z] == 2)
-					c.drawBitmap(Resources.Blocks.blocks[1], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.DIRT], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
 			}
 		}
 		

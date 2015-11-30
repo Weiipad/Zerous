@@ -47,7 +47,7 @@ public class GameView extends SurfaceView implements Runnable
 		
 		Utils.init(c);
 		Resources.init(c);
-		FileOutputer.makeDir("/games/com.zerous");
+		//FileOutputer.makeDir("/games/com.zerous");
 		
 		mainScreen = new MainScreen(this);
 		gameScreen = new GameScreen(this);
@@ -111,6 +111,8 @@ public class GameView extends SurfaceView implements Runnable
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
+		Input.TOUCH_2_X = 0;
+		Input.TOUCH_2_Y = 0;
 		try
 		{
 			Input.count = event.getPointerCount();

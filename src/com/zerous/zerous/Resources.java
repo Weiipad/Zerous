@@ -28,30 +28,31 @@ public class Resources
 	public static Bitmap BACK;
 	public static Bitmap JUMP;
 	public static Bitmap BLOCK_BASIC;
+	public static Bitmap TILE_PLACER;
+	public static Bitmap LOGO;
 	public static Bitmap I;
+	
+	
+	public static class ID
+	{
+		public static final int 
+		GRASS = 0,
+		DIRT = 1,
+		BRICK = 2;
+	}
 	
 	public static class Blocks
 	{
-		public static Bitmap
-		GRASS,
-		DIRT,
-		BRICK;
-		
-		
 		static Bitmap blocksMap;
-		public static Bitmap[] blocks = new Bitmap[16];
+		public static Bitmap[] blockList = new Bitmap[16];
 		
 		public static void init(Context c)
 		{
-			Blocks.GRASS = FileLoader.loadBitmapFromAssets(c, "blocks/grass.png", Info.GUI_ZOOM);
-			Blocks.DIRT = FileLoader.loadBitmapFromAssets(c, "blocks/dirt.png", Info.GUI_ZOOM);
-			Blocks.BRICK = FileLoader.loadBitmapFromAssets(c, "blocks/brick.png", Info.GUI_ZOOM);
-			
 			blocksMap = FileLoader.loadBitmapFromAssets(c, "blocks/terrain1.png");
 			for(int a = 0;a < blocksMap.getWidth()/16;a++)
 			{
-				blocks[a] = Bitmap.createBitmap(blocksMap, a*16, 0, 16, 16);
-				blocks[a] = scale(blocks[a], Info.GUI_ZOOM, Info.GUI_ZOOM);
+				blockList[a] = Bitmap.createBitmap(blocksMap, a*16, 0, 16, 16);
+				blockList[a] = scale(blockList[a], Info.GUI_ZOOM, Info.GUI_ZOOM);
 			}
 		}
 	}
@@ -78,7 +79,8 @@ public class Resources
 		AHEAD = FileLoader.loadBitmapFromAssets(c, "gui/control/ahead.png", Info.GUI_ZOOM);
 		BACK = FileLoader.loadBitmapFromAssets(c, "gui/control/back.png", Info.GUI_ZOOM);
 		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM);
-		
+		//LOGO = FileLoader.loadBitmapFromAssets(c, "gui/logo.png", Info.GUI_ZOOM);
+		//TILE_PLACER = FileLoader.loadBitmapFromAssets(c, "gui/tileplacer.png", Info.GUI_ZOOM);
 		
 		
 		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);
