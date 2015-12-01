@@ -8,16 +8,12 @@ import com.zerous.zerous.io.*;
 public class Resources
 {
 	public static Bitmap A_PIXEL;
-	public static Bitmap START_BUTTON_DOWN;
-	public static Bitmap START_BUTTON_UP;
-	public static Bitmap PAUSE_BUTTON_DOWN;
-	public static Bitmap PAUSE_BUTTON_UP;
-	public static Bitmap SETTINGS_BUTTON_UP;
-	public static Bitmap SETTINGS_BUTTON_DOWN;
-	public static Bitmap ABOUT_BUTTON_UP;
-	public static Bitmap ABOUT_BUTTON_DOWN;
-	public static Bitmap BACK_BUTTON_UP;
-	public static Bitmap BACK_BUTTON_DOWN;
+	public static Bitmap START_BUTTON_DOWN, START_BUTTON_UP;
+	public static Bitmap PAUSE_BUTTON_DOWN, PAUSE_BUTTON_UP;
+	public static Bitmap SETTINGS_BUTTON_UP, SETTINGS_BUTTON_DOWN;
+	public static Bitmap ABOUT_BUTTON_UP, ABOUT_BUTTON_DOWN;
+	public static Bitmap BACK_BUTTON_UP, BACK_BUTTON_DOWN;
+	public static Bitmap CLOSE_BUTTON_UP, CLOSE_BUTTON_DOWN;
 	public static Bitmap CHECKBOX_CHECKED;
 	public static Bitmap CHECKBOX_UNCHECKED;
 	public static Bitmap BANNER;
@@ -31,6 +27,7 @@ public class Resources
 	public static Bitmap TILE_PLACER;
 	public static Bitmap LOGO;
 	public static Bitmap I;
+	
 	
 	
 	public static class ID
@@ -72,6 +69,8 @@ public class Resources
 		BACK_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/back_up.png", Info.GUI_ZOOM);
 		CHECKBOX_CHECKED = FileLoader.loadBitmapFromAssets(c, "gui/check_checked.png", Info.GUI_ZOOM);
 		CHECKBOX_UNCHECKED = FileLoader.loadBitmapFromAssets(c, "gui/check_unchecked.png", Info.GUI_ZOOM);
+		CLOSE_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/close_up.png", Info.GUI_ZOOM);
+		CLOSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/close_down.png", Info.GUI_ZOOM);
 		BANNER = FileLoader.loadBitmapFromAssets(c, "gui/banner.png", Info.GUI_ZOOM);
 		LABEL = FileLoader.loadBitmapFromAssets(c, "gui/label.png", Info.SCREEN_WIDTH, Info.GUI_ZOOM);
 		LEFT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", Info.GUI_ZOOM);

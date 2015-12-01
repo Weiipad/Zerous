@@ -5,6 +5,7 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import android.graphics.*;
+import com.zerous.zerous.io.*;
 
 public class MainActivity extends Activity
 {
@@ -24,6 +25,8 @@ public class MainActivity extends Activity
 		Info.SCREEN_HEIGHT = d.getHeight();
 		Info.GUI_ZOOM = (Info.SCREEN_WIDTH / 16)/16;
 		framebuffer = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.ARGB_4444);
+		
+		Core.files = new FileIO(this);
 		
 		gameView = new GameView(this, framebuffer);
         setContentView(gameView);

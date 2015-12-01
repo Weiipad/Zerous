@@ -39,7 +39,7 @@ public class GameView extends SurfaceView implements Runnable
 		
 		context = c;
 		
-		//Toast.makeText(c, "AAA", Toast.LENGTH_LONG).show();
+		Settings.load();
 		
 		this.framebuffer = framebuffer;
 		
@@ -65,15 +65,20 @@ public class GameView extends SurfaceView implements Runnable
 	
 	public void resume()
 	{
+		
 		running = true;
-		setScreen(mainScreen);
+		if(Settings.QUICK_START)
+			setScreen(gameScreen);
+		else
+			setScreen(mainScreen);
 		gt = new Thread(this);
 		gt.start();
-		Utils.makeToast("AAA");
+		Settings.load();
 	}
 	
 	public void pause()
 	{
+		Settings.save();
 		running = false;
 		while(true)
 		{

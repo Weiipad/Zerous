@@ -4,26 +4,24 @@ import com.zerous.zerous.*;
 import android.graphics.*;
 import com.zerous.zerous.ui.*;
 import android.os.*;
+import com.zerous.zerous.screens.windows.*;
 
 public class PlayScreen extends Screen
 {
-	Button btn;
+	Button btn, b;
 	Label l;
 	SeekBar s;
+	Window w;
 	static int a = 0;
 	static int speed = 0;
 	public PlayScreen(GameView g)
 	{
 		super(g);
 		
-		l = new Label("一个为了不无聊而准备的界面");
-		l.setBackButtonClickEvent(new Button.OnClickEvent()
-		{
-			public void onClick()
-			{
-				game.setScreen(game.mainScreen);
-			}
-		});
+		w = new PlayWindow();
+		
+		l = new Label(g, "一个为了不无聊而准备的界面");
+		l.setBackButtonTo(game.mainScreen);
 		
 		btn = new Button(80, Info.SCREEN_HEIGHT / 2, Resources.PAUSE_BUTTON_UP, Resources.PAUSE_BUTTON_DOWN);
 		btn.setClickEvent(new Button.OnClickEvent()
@@ -34,6 +32,19 @@ public class PlayScreen extends Screen
 				speed+=1;
 			}
 		});
+		
+		
+		Button.OnClickEvent bc = new Button.OnClickEvent()
+		{
+			public void onClick()
+			{
+				w.show();
+			}
+		};
+		
+		b = new Button(Info.SCREEN_WIDTH - Resources.PAUSE_BUTTON_UP.getWidth()/2, Resources.PAUSE_BUTTON_UP.getHeight()/2, Resources.PAUSE_BUTTON_UP, Resources.PAUSE_BUTTON_DOWN);
+		b.setClickEvent(bc);
+		
 		/*btn.setTouchEvent(new Button.OnTouchEvent()
 		{
 			public void onTouchDown()
@@ -61,6 +72,8 @@ public class PlayScreen extends Screen
 		c.drawText("你已经无聊到按了这按钮" + a + "下" + Info.GUI_ZOOM + Environment.getExternalStorageDirectory().getAbsolutePath(), Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, paint);
 		l.draw(c);
 		btn.draw(c);
+		b.draw(c);
 		s.draw(c);
+		w.draw(c);
 	}
 }

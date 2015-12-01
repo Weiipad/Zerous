@@ -10,14 +10,8 @@ public class AboutScreen extends Screen
 	public AboutScreen(GameView g)
 	{
 		super(g);
-		l = new Label("关于");
-		l.setBackButtonClickEvent(new Button.OnClickEvent()
-		{
-			public void onClick()
-			{
-				game.setScreen(game.mainScreen);
-			}
-		});
+		l = new Label(g, "关于");
+		l.setBackButtonTo(game.mainScreen);
 	}
 
 	@Override

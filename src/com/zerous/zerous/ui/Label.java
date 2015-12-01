@@ -9,8 +9,11 @@ public class Label extends Ui
 	public float height;
 	Bitmap src;
 	String text;
-	public Label(String text)
+	GameView game;
+	Screen backTo;
+	public Label(GameView g, String text)
 	{
+		game = g;
 		src = Resources.LABEL;
 		this.text = text;
 		height = src.getHeight();
@@ -26,6 +29,18 @@ public class Label extends Ui
 	public void setBackButtonClickEvent(Button.OnClickEvent click)
 	{
 		back.setClickEvent(click);
+	}
+	
+	public void setBackButtonTo(Screen s)
+	{
+		backTo = s;
+		back.setClickEvent(new Button.OnClickEvent()
+		{
+			public void onClick()
+			{
+				game.setScreen(backTo);
+			}
+		});
 	}
 	
 	@Override

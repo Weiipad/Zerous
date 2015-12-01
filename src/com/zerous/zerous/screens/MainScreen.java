@@ -3,20 +3,24 @@ package com.zerous.zerous.screens;
 import android.graphics.*;
 import com.zerous.zerous.*;
 import com.zerous.zerous.ui.*;
+import com.zerous.zerous.screens.windows.*;
 
 public class MainScreen extends Screen
 {
 	Button toGame, toSettings, toAbout;
 	Button play;
+	Window levelChooser;
 	public MainScreen(GameView g)
 	{
 		super(g);
+		
+		levelChooser = new LevelChooser(g);
 		
 		toGame = new Button(Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, Resources.START_BUTTON_UP, Resources.START_BUTTON_DOWN);
 		toSettings = new Button(Info.SCREEN_WIDTH - Resources.SETTINGS_BUTTON_UP.getWidth()*1.8f, Info.SCREEN_HEIGHT - Resources.SETTINGS_BUTTON_UP.getHeight()/2, Resources.SETTINGS_BUTTON_UP, Resources.SETTINGS_BUTTON_DOWN);
 		toAbout = new Button(Info.SCREEN_WIDTH - Resources.ABOUT_BUTTON_UP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.ABOUT_BUTTON_UP.getHeight()/2, Resources.ABOUT_BUTTON_UP, Resources.ABOUT_BUTTON_DOWN);
 		
-		play = new Button(240, 60, 480, 120);
+		play = new Button(Info.SCREEN_WIDTH - 240, 60, 480, 120);
 		play.setText("一个为了不无聊而准备的按钮");
 		
 		play.setClickEvent(new Button.OnClickEvent()
@@ -39,7 +43,7 @@ public class MainScreen extends Screen
 		{
 			public void onClick()
 			{
-				game.setScreen(game.gameScreen);
+				levelChooser.show();
 			}
 		});
 		
@@ -62,5 +66,6 @@ public class MainScreen extends Screen
 		toGame.draw(c);
 		toSettings.draw(c);
 		toAbout.draw(c);
+		levelChooser.draw(c);
 	}
 }

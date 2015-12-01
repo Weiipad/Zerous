@@ -28,6 +28,11 @@ public class CheckBox extends Ui
 	{
 		return isChecked;
 	}
+	
+	public void setState(boolean state)
+	{
+		isChecked = state;
+	}
 
 	@Override
 	public void draw(Canvas c)
