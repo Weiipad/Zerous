@@ -13,6 +13,7 @@ public class Button extends Ui
 	
 	Point position;
 	public Size size;
+	public boolean isTouched;
 	String text = null;
 	
 	Paint textPaint, bug;
@@ -82,6 +83,8 @@ public class Button extends Ui
 		
 		if(a && b)
 		{
+			isTouched = true;
+			
 			if(up == null && down == null)
 				paint.setColor(COLOR_BUTTON_DOWN);
 			else
@@ -92,6 +95,8 @@ public class Button extends Ui
 		}
 		else
 		{
+			isTouched = false;
+			
 			if(up == null && down == null)
 				paint.setColor(COLOR_BUTTON_UP);
 			else

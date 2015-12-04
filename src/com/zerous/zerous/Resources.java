@@ -41,14 +41,22 @@ public class Resources
 	public static class Blocks
 	{
 		static Bitmap blocksMap;
-		public static Bitmap[] blockList = new Bitmap[16];
+		public static Bitmap[] blockList;
 		
 		public static void init(Context c)
 		{
-			blocksMap = FileLoader.loadBitmapFromAssets(c, "blocks/terrain1.png");
-			for(int a = 0;a < blocksMap.getWidth()/16;a++)
+			int x = 0, y = 0;
+			blocksMap = FileLoader.loadBitmapFromAssets(c, "blocks/terrain2.png");
+			blockList = new Bitmap[(blocksMap.getWidth() + blocksMap.getHeight())/16];
+			for(int a = 0;a < (blocksMap.getWidth() + blocksMap.getHeight())/16;a++)
 			{
-				blockList[a] = Bitmap.createBitmap(blocksMap, a*16, 0, 16, 16);
+				if(x >= blocksMap.getWidth()/16)
+				{
+					y++;
+					x = 0;
+				}
+				blockList[a] = Bitmap.createBitmap(blocksMap, x*16, y*16, 16, 16);
+				x++;
 				blockList[a] = scale(blockList[a], Info.GUI_ZOOM, Info.GUI_ZOOM);
 			}
 		}
@@ -73,13 +81,13 @@ public class Resources
 		CLOSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/close_down.png", Info.GUI_ZOOM);
 		BANNER = FileLoader.loadBitmapFromAssets(c, "gui/banner.png", Info.GUI_ZOOM);
 		LABEL = FileLoader.loadBitmapFromAssets(c, "gui/label.png", Info.SCREEN_WIDTH, Info.GUI_ZOOM);
-		LEFT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", Info.GUI_ZOOM);
-		RIGHT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", -Info.GUI_ZOOM, Info.GUI_ZOOM);
-		AHEAD = FileLoader.loadBitmapFromAssets(c, "gui/control/ahead.png", Info.GUI_ZOOM);
-		BACK = FileLoader.loadBitmapFromAssets(c, "gui/control/back.png", Info.GUI_ZOOM);
+		LEFT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", Info.GUI_ZOOM*1.5f);
+		RIGHT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", -Info.GUI_ZOOM*1.5f, Info.GUI_ZOOM*1.5f);
+		AHEAD = FileLoader.loadBitmapFromAssets(c, "gui/control/ahead.png", Info.GUI_ZOOM*1.5f);
+		BACK = FileLoader.loadBitmapFromAssets(c, "gui/control/back.png", Info.GUI_ZOOM*1.5f);
 		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM);
-		//LOGO = FileLoader.loadBitmapFromAssets(c, "gui/logo.png", Info.GUI_ZOOM);
-		//TILE_PLACER = FileLoader.loadBitmapFromAssets(c, "gui/tileplacer.png", Info.GUI_ZOOM);
+		LOGO = FileLoader.loadBitmapFromAssets(c, "gui/logo.png", Info.GUI_ZOOM*2);
+		TILE_PLACER = FileLoader.loadBitmapFromAssets(c, "gui/tileplacer.png", Info.GUI_ZOOM);
 		
 		
 		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);

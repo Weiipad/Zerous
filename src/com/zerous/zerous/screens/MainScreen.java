@@ -61,6 +61,7 @@ public class MainScreen extends Screen
 	{
 		super.draw(c);
 		c.drawBitmap(Resources.BANNER, Info.SCREEN_WIDTH - Resources.BANNER.getWidth(), Info.SCREEN_HEIGHT - Resources.BANNER.getHeight(), null);
+		c.drawBitmap(Resources.LOGO, Info.SCREEN_WIDTH/2 - Resources.LOGO.getWidth()/2, Info.SCREEN_HEIGHT/4 - Resources.LOGO.getHeight()/2, null);
 		
 		play.draw(c);
 		toGame.draw(c);

@@ -8,9 +8,11 @@ import com.zerous.zerous.entity.*;
 public class World extends GameObject
 {
 	public GameView game;
-	public int terrain[][][] = new int[10][10][10];
+	public int terrain[][] = new int[64][10];
 	public float x, y;
 	ArrayList<Entity> entities = new ArrayList<Entity>();
+	
+	boolean first = true;
 	
 	public World(Screen scr)
 	{
@@ -19,17 +21,29 @@ public class World extends GameObject
 	
 	public void addEntity(Entity e)
 	{
+		//e.setPosition(this.x + e.getPosition().x * Info.TILE_WIDTH, e.getPosition().y * Info.TILE_HEIGHT/2, this.y + e.getPosition().z * Info.TILE_HEIGHT/2);
+		e.set(Info.TILE_WIDTH, Info.TILE_HEIGHT);
 		entities.add(e);
-		
+	}
+	
+	public void placeBlock(int x, int y, int id)
+	{
+		if(x >= 0&&y >= 0&&x < terrain.length&& y < terrain[0].length)
+			terrain[x][y] = id;
+		else
+			return;
+	}
+	
+	public int getBlock(int x, int y)
+	{
+		return terrain[x][y];
 	}
 
 	@Override
 	public void draw(Canvas c)
-	{	
-		for(int y =0;y <= 5;y++)
-		{
-			drawXZ(c, y);
-		}
+	{
+		drawTerrain(c);
+		
 		
 		for(Entity e:entities)
 		{
@@ -37,26 +51,34 @@ public class World extends GameObject
 		}
 	}
 	
-	public void drawXZ(Canvas c, int y)
+	public void drawTerrain(Canvas c)
 	{
 		for(int x = 0;x < terrain.length;x++)
 		{
-			for(int z = 0;z < terrain[0][0].length;z++)
+			for(int y = 0;y < terrain[0].length;y++)
 			{
-				if(y <= 4){
-				terrain[x][0][0] = 1;
-				terrain[0][0][z] = 1;
-				terrain[0][y][0] = 2;
+				/*if(y < 1)
+				{
+					terrain[x][y] = 1;
+				}
+				else if(y >= 1&&y < 5)
+				{
+					terrain[x][y] = 2;
 				}
 				else
 				{
-					terrain[0][y][0] = 1;
-				}
+					terrain[x][y] = 3;
+				}*/
 				
-				if(terrain[x][y][z] == 1)
-					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.GRASS], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
-				else if(terrain[x][y][z] == 2)
-					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.DIRT], this.x + x*Info.TILE_WIDTH, this.y + z*Info.TILE_HEIGHT/2 - y*Info.TILE_HEIGHT/2, null);
+				
+				if(terrain[x][y] == 1)
+					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.GRASS], this.x + x*Info.TILE_WIDTH, this.y + y*Info.TILE_HEIGHT, null);
+				else if(terrain[x][y] == 2)
+					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.DIRT], this.x + x*Info.TILE_WIDTH, this.y + y*Info.TILE_HEIGHT, null);
+				else if(terrain[x][y] == 3)
+					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.BRICK], this.x + x * Info.TILE_WIDTH, this.y+ y*Info.TILE_HEIGHT, null);
+				if(y >= 4)
+					first = false;
 			}
 		}
 		

@@ -2,7 +2,7 @@ package com.zerous.zerous;
 
 public class Info
 {
-	public static final String GAME_PATH = "games/com.zerous/";
+	public static final String GAME_PATH = "games/com.zerous";
 	
 	public static int SCREEN_WIDTH;
 	public static int SCREEN_HEIGHT;

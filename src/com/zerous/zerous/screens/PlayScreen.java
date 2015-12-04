@@ -28,8 +28,8 @@ public class PlayScreen extends Screen
 		{
 			public void onClick()
 			{
-				a+=speed;
-				speed+=1;
+				a++;
+				//speed+=1;
 			}
 		});
 		

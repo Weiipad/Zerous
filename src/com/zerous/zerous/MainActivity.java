@@ -6,6 +6,7 @@ import android.view.*;
 import android.widget.*;
 import android.graphics.*;
 import com.zerous.zerous.io.*;
+import java.io.*;
 
 public class MainActivity extends Activity
 {
@@ -27,6 +28,8 @@ public class MainActivity extends Activity
 		framebuffer = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.ARGB_4444);
 		
 		Core.files = new FileIO(this);
+		
+		new File(Info.GAME_PATH).mkdir();
 		
 		gameView = new GameView(this, framebuffer);
         setContentView(gameView);

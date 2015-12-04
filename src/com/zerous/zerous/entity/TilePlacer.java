@@ -6,11 +6,11 @@ import com.zerous.zerous.*;
 
 public class TilePlacer extends Entity
 {
-	public TilePlacer(Vec3 pos)
+	public TilePlacer(Vec2 pos)
 	{
 		super(pos);
-		body = Resources.I;
-		velocity = new Vec3(1, 1, 1);
+		body = Resources.TILE_PLACER;
+		velocity = new Vec2(1, 1);
 	}
 	
 }

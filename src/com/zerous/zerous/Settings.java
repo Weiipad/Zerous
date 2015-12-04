@@ -11,7 +11,7 @@ public class Settings
 		BufferedReader in = null;
 		try
 		{
-			in = new BufferedReader(new InputStreamReader(Core.files.readFile(Info.GAME_PATH + ".settings")));
+			in = new BufferedReader(new InputStreamReader(Core.files.readFile(Info.GAME_PATH + "/.settings")));
 			DEBUG = Boolean.parseBoolean(in.readLine());
 			QUICK_START = Boolean.parseBoolean(in.readLine());
 		}
@@ -26,7 +26,7 @@ public class Settings
 		BufferedWriter out = null;
 		try
 		{
-			out = new BufferedWriter(new OutputStreamWriter(Core.files.writeFile(Info.GAME_PATH + ".settings")));
+			out = new BufferedWriter(new OutputStreamWriter(Core.files.writeFile(Info.GAME_PATH + "/.settings")));
 			out.write(Boolean.toString(DEBUG));
 			out.write("\n");
 			out.write(Boolean.toString(QUICK_START));
