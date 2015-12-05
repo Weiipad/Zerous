@@ -32,7 +32,7 @@ public class GameScreen extends Screen
 		ahead = new Button(Resources.AHEAD.getWidth()*2, Info.SCREEN_HEIGHT - Resources.AHEAD.getHeight()*3, Resources.AHEAD, Resources.AHEAD);
 		back = new Button(Resources.BACK.getWidth()*2, Info.SCREEN_HEIGHT -Resources.BACK.getHeight(), Resources.BACK, Resources.BACK);
 		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth(), Info.SCREEN_HEIGHT - Resources.JUMP.getHeight(), Resources.JUMP, Resources.JUMP);
-		place = new Button(Resources.JUMP.getWidth()/2, Resources.JUMP.getHeight()/2, Resources.scale( Resources.JUMP, 1, -1), Resources.scale(Resources.JUMP, 1, -1));
+		place = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()*2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight(), Resources.scale( Resources.JUMP, 1, -1), Resources.scale(Resources.JUMP, 1, -1));
 		
 		initPlaceUi();
 		//initUi();
@@ -145,7 +145,9 @@ public class GameScreen extends Screen
 			public void onClick()
 			{
 				//t.up();
+				w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 1);
 				
+					
 			}
 		});
 		
@@ -153,11 +155,7 @@ public class GameScreen extends Screen
 		{
 			public void onClick()
 			{
-				w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 1);
-				if(ab)
-				{
-					w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 0);
-				}
+				w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 0);
 			}
 		});
 	}

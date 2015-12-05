@@ -7,11 +7,19 @@ import com.zerous.zerous.ui.*;
 public class AboutScreen extends Screen
 {
 	Label l;
+	int a = 0, b;
+	Bitmap[] ani = new Bitmap[4];
+	Bitmap self;
 	public AboutScreen(GameView g)
 	{
 		super(g);
 		l = new Label(g, "关于");
 		l.setBackButtonTo(game.mainScreen);
+		
+		ani[0] = Resources.AHEAD;
+		ani[1] = Resources.LEFT_UP;
+		ani[2] = Resources.BACK;
+		ani[3] = Resources.RIGHT_UP;
 	}
 
 	@Override
@@ -20,5 +28,21 @@ public class AboutScreen extends Screen
 		super.draw(c);
 		l.draw(c);
 		c.drawText("制作by @weiipad", 0, l.height + 32, paint);
+		b++;
+		if(b%1 == 0)
+		{
+			if(a < ani.length - 1)
+			{
+				a++;
+			}
+			else
+			{
+				a = 0;
+			}
+		}
+		self  = ani[a];
+		
+		c.drawBitmap(ani[a], 600, 600, null);
+		c.drawText(ani.length+"", 600, 600, paint);
 	}
 }

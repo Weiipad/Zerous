@@ -85,7 +85,7 @@ public class Resources
 		RIGHT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", -Info.GUI_ZOOM*1.5f, Info.GUI_ZOOM*1.5f);
 		AHEAD = FileLoader.loadBitmapFromAssets(c, "gui/control/ahead.png", Info.GUI_ZOOM*1.5f);
 		BACK = FileLoader.loadBitmapFromAssets(c, "gui/control/back.png", Info.GUI_ZOOM*1.5f);
-		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM);
+		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM*1.5f);
 		LOGO = FileLoader.loadBitmapFromAssets(c, "gui/logo.png", Info.GUI_ZOOM*2);
 		TILE_PLACER = FileLoader.loadBitmapFromAssets(c, "gui/tileplacer.png", Info.GUI_ZOOM);
 		
