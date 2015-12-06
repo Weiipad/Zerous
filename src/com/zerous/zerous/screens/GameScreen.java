@@ -49,8 +49,6 @@ public class GameScreen extends Screen
 		
 		paint.setTextSize(Info.GUI_ZOOM * 4);
 		paint.setAntiAlias(true);
-	//	t = new TilePlacer(new Vec2(5, 5));
-	//	w.addEntity(t);
 		pl = new Player(Resources.BLOCK_BASIC, new Vec2(0, 5));
 		w.addEntity(pl);
 	}
@@ -58,15 +56,15 @@ public class GameScreen extends Screen
 	public void draw(Canvas c)
 	{
 		
-		switch(Input.TOUCH_STATE)
+		switch(OldInput.TOUCH_STATE)
 		{
-			case Input.TOUCH_STATE_DOWN:
+			case OldInput.TOUCH_STATE_DOWN:
 				debug = "TOUCH_DOWN";
 				break;
-			case Input.TOUCH_STATE_MOVE:
+			case OldInput.TOUCH_STATE_MOVE:
 				debug = "TOUCH_MOVE";
 				break;
-			case Input.TOUCH_STATE_UP:
+			case OldInput.TOUCH_STATE_UP:
 				debug = "TOUCH_UP";
 				break;
 		}
@@ -83,7 +81,7 @@ public class GameScreen extends Screen
 		if(Settings.DEBUG)
 		{
 			fps.drawFPS(c);
-			c.drawText(debug + pl.getVelocityY(), 180, 180, paint);
+			c.drawText(debug + pl.getVelocityY() + pl.getVelocityX(), 180, 180, paint);
 		}
 	}
 	
@@ -134,7 +132,7 @@ public class GameScreen extends Screen
 			public void onClick()
 			{
 				//t.up();
-				w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 1);
+				//w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 1);
 				
 					
 			}
@@ -163,12 +161,12 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
-					
+					pl.velocity.x = -0.1f;
 				}
 
 				public void onTouchUp()
 				{
-
+					pl.velocity.x = 0;
 				}
 			});
 
@@ -176,12 +174,12 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
-					
+					pl.velocity.x = 0.1f;
 				}
 
 				public void onTouchUp()
 				{
-
+					//pl.velocity.x = 0;
 				}
 			});
 
@@ -216,7 +214,7 @@ public class GameScreen extends Screen
 				public void onClick()
 				{
 					debug = "Jump";
-					pl.setVelocity(new Vec2(0, -0.1f));
+					pl.jump();
 					
 					//Oops, I can't use the Toast
 					/*try

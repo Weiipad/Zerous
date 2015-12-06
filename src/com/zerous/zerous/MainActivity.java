@@ -7,6 +7,7 @@ import android.widget.*;
 import android.graphics.*;
 import com.zerous.zerous.io.*;
 import java.io.*;
+import com.zerous.zerous.input.*;
 
 public class MainActivity extends Activity
 {
@@ -27,9 +28,12 @@ public class MainActivity extends Activity
 		Info.GUI_ZOOM = (Info.SCREEN_WIDTH / 16)/16;
 		framebuffer = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.ARGB_4444);
 		
-		Core.files = new FileIO(this);
 		
-		new File(Info.GAME_PATH).mkdir();
+		
+		Core.files = new FileIO(this);
+		//Core.input = new AndroidInput(this, gameView);
+		
+		//new File(Info.GAME_PATH).mkdir();
 		
 		gameView = new GameView(this, framebuffer);
         setContentView(gameView);

@@ -13,7 +13,7 @@ public class Button extends Ui
 	
 	Point position;
 	public Size size;
-	public boolean isTouched;
+	public int count;
 	String text = null;
 	
 	Paint textPaint, bug;
@@ -78,24 +78,34 @@ public class Button extends Ui
 	@Override
 	public void draw(Canvas c)
 	{
-		boolean a = Input.TOUCH_STATE == Input.TOUCH_STATE_DOWN || Input.TOUCH_STATE == Input.TOUCH_STATE_MOVE;
+		boolean a = Core.input.isTouchDown(0) || Core.input.isTouchDown(1);
 		boolean b = MathUtil.isInside(position.x - size.w/2, position.y - size.h/2, size.w, size.h);
 		
 		if(a && b)
 		{
-			isTouched = true;
-			
+			count ++;
+			if(count <= 1&&click != null)
+			{
+				click.onClick();
+			}
+		}
+		else
+		{
+			count = 0;
+		}
+		
+		if(a && b)
+		{
 			if(up == null && down == null)
 				paint.setColor(COLOR_BUTTON_DOWN);
 			else
 				src = down;
 			if(touch != null)	
 				touch.onTouchDown();
-			clickFlag = false;
+			
 		}
 		else
 		{
-			isTouched = false;
 			
 			if(up == null && down == null)
 				paint.setColor(COLOR_BUTTON_UP);
@@ -103,14 +113,7 @@ public class Button extends Ui
 				src = up;
 			if(touch != null)
 				touch.onTouchUp();
-			if(Input.TOUCH_STATE == Input.TOUCH_STATE_UP && click != null && b && !clickFlag)
-			{
-				click.onClick();
-				clickFlag = true;
-			}
 		}
-		
-		
 		
 		if(up == null && down == null)
 		{
@@ -128,6 +131,7 @@ public class Button extends Ui
 				c.drawLine(position.x + size.w/2, position.y - size.h/2, position.x + size.w/2, position.y + size.h/2, bug);
 				c.drawLine(position.x + size.w/2, position.y + size.h/2, position.x - size.w/2, position.y + size.h/2, bug);
 				c.drawLine(position.x - size.w/2, position.y + size.h/2, position.x - size.w/2, position.y - size.h/2, bug);
+				c.drawText("" + count, position.x, position.y, bug);
 			}
 		}
 	}

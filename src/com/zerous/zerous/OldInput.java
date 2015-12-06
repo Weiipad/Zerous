@@ -1,6 +1,6 @@
 package com.zerous.zerous;
 
-public class Input
+public class OldInput
 {
 	public static float TOUCH_X;
 	public static float TOUCH_Y;

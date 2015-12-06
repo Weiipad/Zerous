@@ -20,15 +20,15 @@ public class List extends Ui
 	@Override
 	public void draw(Canvas c)
 	{
-		if(Input.TOUCH_STATE == Input.TOUCH_STATE_DOWN)
+		if(OldInput.TOUCH_STATE == OldInput.TOUCH_STATE_DOWN)
 		{
-			a = Input.TOUCH_Y - listY;
+			a = OldInput.TOUCH_Y - listY;
 			//b = Input
 			
 		}
-		else if(Input.TOUCH_STATE == Input.TOUCH_STATE_MOVE)
+		else if(OldInput.TOUCH_STATE == OldInput.TOUCH_STATE_MOVE)
 		{
-			listY = Input.TOUCH_X - a;
+			listY = OldInput.TOUCH_X - a;
 		}
 		
 		//c.drawText("T", 0, listY, new Paint());

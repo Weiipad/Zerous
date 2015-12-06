@@ -7,10 +7,12 @@ import com.zerous.zerous.math.*;
 public class Entity extends GameObject
 {
 	public Vec2 velocity;
+	public boolean landed;
 	Vec2 position;
 	Bitmap body;
 	
 	float x, y;
+	
 	
 	enum State
 	{
@@ -38,6 +40,11 @@ public class Entity extends GameObject
 	public float getVelocityY()
 	{
 		return velocity.y;
+	}
+	
+	public float getVelocityX()
+	{
+		return velocity.x;
 	}
 	
 	//设置坐标系
@@ -68,5 +75,6 @@ public class Entity extends GameObject
 		position.x += velocity.x;
 		position.y += velocity.y;
 		c.drawBitmap(body, position.x * x, position.y * y, null);
+		//c.drawPoint(position.x * x, position.y * y, new Paint());
 	}
 }

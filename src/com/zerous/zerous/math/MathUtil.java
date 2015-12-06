@@ -6,8 +6,8 @@ public class MathUtil
 {
 	public static boolean isInside(float x, float y, float w, float h)
 	{
-		if(Input.TOUCH_X > x&&Input.TOUCH_X < x + w&&Input.TOUCH_Y > y&&Input.TOUCH_Y < y + h
-		   ||Input.TOUCH_2_X > x&&Input.TOUCH_2_X < x + w&&Input.TOUCH_2_Y > y&&Input.TOUCH_2_Y < y + h)
+		if((Core.input.getTouchX(0) > x&&Core.input.getTouchX(0) < x + w&&Core.input.getTouchY(0) > y&&Core.input.getTouchY(0) < y + h)
+		   ||(Core.input.getTouchX(1) > x&&Core.input.getTouchX(1) < x + w&&Core.input.getTouchY(1) > y&&Core.input.getTouchY(1) < y + h))
 			return true;
 		
 		return false;
@@ -15,8 +15,8 @@ public class MathUtil
 	
 	public static boolean isInside(Point position, Size size)
 	{
-		if(Input.TOUCH_X > position.x - size.w/2&&Input.TOUCH_X < position.x + size.w/2&&Input.TOUCH_Y > position.y - size.h/2&&Input.TOUCH_Y < position.y + size.h/2 
-		   ||Input.TOUCH_2_X > position.x - size.w&&Input.TOUCH_2_X < position.x + size.w/2&&Input.TOUCH_2_Y > position.y - size.h/2&&Input.TOUCH_2_Y < position.y + size.h/2)
+		if((Core.input.getTouchX(0) > position.x - size.w/2&&Core.input.getTouchX(0) < position.x + size.w/2&&Core.input.getTouchY(0) > position.y - size.h/2&&Core.input.getTouchY(0) < position.y + size.h/2 )
+		   ||(Core.input.getTouchX(1) > position.x - size.w&&Core.input.getTouchX(1) < position.x + size.w/2&&Core.input.getTouchY(1) > position.y - size.h/2&&Core.input.getTouchY(1) < position.y + size.h/2))
 			return true;
 		
 		return false;

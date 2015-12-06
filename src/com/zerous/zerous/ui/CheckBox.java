@@ -12,7 +12,8 @@ public class CheckBox extends Ui
 	String name;
 	Size size;
 	Bitmap src, checked, unchecked;
-	boolean isChecked = false, clickFlag;
+	boolean isChecked = false;
+	int count;
 	public CheckBox(float x, float y, String name)
 	{
 		position = new Point(x, y);
@@ -37,20 +38,23 @@ public class CheckBox extends Ui
 	@Override
 	public void draw(Canvas c)
 	{
+		
 		boolean t = MathUtil.isInside(position, size);
-		boolean s = Input.TOUCH_STATE == Input.TOUCH_STATE_DOWN || Input.TOUCH_STATE == Input.TOUCH_STATE_MOVE;
+		boolean s = Core.input.isTouchDown(0) || Core.input.isTouchDown(1);
+
 		if(t && s)
 		{
-			clickFlag = false;
+			count++;
+			if(count <= 1)
+			{
+				isChecked = !isChecked;
+			}
 		}
 		else
 		{
-			if(Input.TOUCH_STATE == Input.TOUCH_STATE_UP && t && !clickFlag)
-			{
-				isChecked = !isChecked;
-				clickFlag = true;
-			}
+			count = 0;
 		}
+		
 		
 		if(isChecked)
 			src = checked;
@@ -58,7 +62,7 @@ public class CheckBox extends Ui
 			src = unchecked;
 			
 		c.drawBitmap(src, position.x - size.w/2, position.y - size.h/2, null);
-		c.drawText(name, position.x + size.w/2 + Info.GUI_ZOOM, position.y, paint);
+		c.drawText(name + count, position.x + size.w/2 + Info.GUI_ZOOM, position.y, paint);
 	}
 	
 }

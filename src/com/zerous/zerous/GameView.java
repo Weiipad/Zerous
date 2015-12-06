@@ -9,6 +9,7 @@ import android.widget.*;
 import com.zerous.zerous.io.*;
 import java.io.*;
 import android.os.*;
+import com.zerous.zerous.input.*;
 
 public class GameView extends SurfaceView implements Runnable
 {
@@ -19,7 +20,6 @@ public class GameView extends SurfaceView implements Runnable
 	Bitmap framebuffer;
 	
 	Canvas c;
-	public Canvas mc;
 	
 	Screen currentScreen;
 	
@@ -34,12 +34,15 @@ public class GameView extends SurfaceView implements Runnable
 	
 	public Context context;
 	
+	Input input;
+	
 	public GameView(Context c, Bitmap framebuffer)
 	{
 		super(c);
 		holder = this.getHolder();
 		
 		context = c;
+		Core.input = new AndroidInput(c, this);
 		
 		if(!new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Info.GAME_PATH).exists())
 			new File(Environment.getExternalStorageDirectory()
@@ -74,6 +77,7 @@ public class GameView extends SurfaceView implements Runnable
 	{
 		
 		running = true;
+		//setScreen(debugScreen);
 		if(Settings.QUICK_START)
 			setScreen(gameScreen);
 		else
@@ -119,27 +123,32 @@ public class GameView extends SurfaceView implements Runnable
 				holder.unlockCanvasAndPost(c);
 		}
 	}
+	
+	public Input getInput()
+	{
+		return input;
+	}
 
-	@Override
+	/*@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		Input.TOUCH_2_X = 0;
-		Input.TOUCH_2_Y = 0;
+		//Input.TOUCH_2_X = 0;
+		//Input.TOUCH_2_Y = 0;
 		try
 		{
-			Input.count = event.getPointerCount();
+			OldInput.count = event.getPointerCount();
 			
-			Input.TOUCH_X = event.getX();
-			Input.TOUCH_Y = event.getY();
+			OldInput.TOUCH_X = event.getX();
+			OldInput.TOUCH_Y = event.getY();
 			
 			if(event.getPointerCount() >= 2)
 			{
-				Input.TOUCH_2_X = event.getX(1);
-				Input.TOUCH_2_Y = event.getY(1);
+				OldInput.TOUCH_2_X = event.getX(1);
+				OldInput.TOUCH_2_Y = event.getY(1);
 			}
-			else
+			else if(event.getAction() == event.ACTION_UP)
 			{
-				Input.TOUCH_2_X = Input.TOUCH_2_Y = 0;
+				OldInput.TOUCH_2_X = OldInput.TOUCH_2_Y = 0;
 			}
 		}
 		catch(Exception e)
@@ -149,21 +158,21 @@ public class GameView extends SurfaceView implements Runnable
 		
 		if(event.getAction() == event.ACTION_DOWN 
 		|| event.getAction() == event.ACTION_POINTER_DOWN )
-			Input.TOUCH_STATE = Input.TOUCH_STATE_DOWN;
+			OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_DOWN;
 		else if(event.getAction() == event.ACTION_UP
 		||event.getAction() == event.ACTION_POINTER_UP)
 		{
-			Input.TOUCH_STATE = Input.TOUCH_STATE_UP;
+			OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_UP;
 			//Input.TOUCH_X = Input.TOUCH_Y = Input.TOUCH_2_X = Input.TOUCH_2_Y = 0;
 		}
 		else if(event.getAction() == event.ACTION_MOVE)
 		{
-			Input.TOUCH_STATE = Input.TOUCH_STATE_MOVE;
+			OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_MOVE;
 		}
 			
 		//Input.TOUCH_2_X = Input.TOUCH_2_Y = 0;
 		return true;
-	}
+	}*/
 	
 	
 	
