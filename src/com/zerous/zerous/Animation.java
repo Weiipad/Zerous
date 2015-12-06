@@ -27,9 +27,13 @@ public class Animation
 		fps ++;
 		if(fps % speed == 0)
 		{
-			if(frame < frames.length - 2)
+			if(frame < frames.length - 1)
 			{
-				
+				frame ++;
+			}
+			else
+			{
+				frame = 0;
 			}
 		}
 		

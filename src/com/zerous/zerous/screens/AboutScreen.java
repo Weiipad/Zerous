@@ -10,6 +10,7 @@ public class AboutScreen extends Screen
 	int a = 0, b;
 	Bitmap[] ani = new Bitmap[4];
 	Bitmap self;
+	Animation anim;
 	public AboutScreen(GameView g)
 	{
 		super(g);
@@ -20,6 +21,7 @@ public class AboutScreen extends Screen
 		ani[1] = Resources.LEFT_UP;
 		ani[2] = Resources.BACK;
 		ani[3] = Resources.RIGHT_UP;
+		anim = new Animation(ani, 10);
 	}
 
 	@Override
@@ -28,7 +30,7 @@ public class AboutScreen extends Screen
 		super.draw(c);
 		l.draw(c);
 		c.drawText("制作by @weiipad", 0, l.height + 32, paint);
-		b++;
+		/*b++;
 		if(b%1 == 0)
 		{
 			if(a < ani.length - 1)
@@ -39,10 +41,10 @@ public class AboutScreen extends Screen
 			{
 				a = 0;
 			}
-		}
-		self  = ani[a];
+		}*/
+		self  = anim.getFrame();
 		
-		c.drawBitmap(ani[a], 600, 600, null);
+		c.drawBitmap(self, 600, 600, null);
 		c.drawText(ani.length+"", 600, 600, paint);
 	}
 }

@@ -30,6 +30,7 @@ public class Entity extends GameObject
 		velocity = new Vec2(0, 0);
 	}
 	
+	//设置坐标系
 	public void set(float x, float y)
 	{
 		this.x = x;
