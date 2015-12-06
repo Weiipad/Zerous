@@ -47,8 +47,8 @@ public class Resources
 		{
 			int x = 0, y = 0;
 			blocksMap = FileLoader.loadBitmapFromAssets(c, "blocks/terrain2.png");
-			blockList = new Bitmap[(blocksMap.getWidth() + blocksMap.getHeight())/16];
-			for(int a = 0;a < (blocksMap.getWidth() + blocksMap.getHeight())/16;a++)
+			blockList = new Bitmap[(blocksMap.getWidth()/16) * (blocksMap.getHeight()/16)];
+			for(int a = 0;a < (blocksMap.getWidth()/16) * (blocksMap.getHeight()/16);a++)
 			{
 				if(x >= blocksMap.getWidth()/16)
 				{

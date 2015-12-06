@@ -21,7 +21,7 @@ public class AboutScreen extends Screen
 		ani[1] = Resources.LEFT_UP;
 		ani[2] = Resources.BACK;
 		ani[3] = Resources.RIGHT_UP;
-		anim = new Animation(ani, 10);
+		anim = new Animation(Resources.Blocks.blockList, 10);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class AboutScreen extends Screen
 		c.drawText("制作by @weiipad", 0, l.height + 32, paint);
 		/*b++;
 		if(b%1 == 0)
-		{
+		{ 
 			if(a < ani.length - 1)
 			{
 				a++;
@@ -45,6 +45,6 @@ public class AboutScreen extends Screen
 		self  = anim.getFrame();
 		
 		c.drawBitmap(self, 600, 600, null);
-		c.drawText(ani.length+"", 600, 600, paint);
+		c.drawText(anim.getFrameCount()+"", 600, 600, paint);
 	}
 }

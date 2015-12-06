@@ -42,9 +42,9 @@ public abstract class Window extends Ui
 		if(show)
 		{
 			paint.setColor(0xFFAFAFAF);
-			c.drawRoundRect(2*Info.GUI_ZOOM, 2*Info.GUI_ZOOM, Info.SCREEN_WIDTH - 2*Info.GUI_ZOOM, Info.SCREEN_HEIGHT - 2*Info.GUI_ZOOM, 4*Info.GUI_ZOOM, 4*Info.GUI_ZOOM, paint);
+			c.drawRect(2*Info.GUI_ZOOM, 2*Info.GUI_ZOOM, Info.SCREEN_WIDTH - 2*Info.GUI_ZOOM, Info.SCREEN_HEIGHT - 2*Info.GUI_ZOOM, paint);
 			paint.setColor(0xFFCFCFCF);
-			c.drawRoundRect(3*Info.GUI_ZOOM, 3*Info.GUI_ZOOM, Info.SCREEN_WIDTH - 3*Info.GUI_ZOOM, Info.SCREEN_HEIGHT - 3*Info.GUI_ZOOM, 4*Info.GUI_ZOOM, 4*Info.GUI_ZOOM, paint);
+			c.drawRect(3*Info.GUI_ZOOM, 3*Info.GUI_ZOOM, Info.SCREEN_WIDTH - 3*Info.GUI_ZOOM, Info.SCREEN_HEIGHT - 3*Info.GUI_ZOOM, paint);
 			drawUI(c);
 		}
 	}

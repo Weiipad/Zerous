@@ -22,6 +22,11 @@ public class Animation
 		this.speed = speed;
 	}
 	
+	public int getFrameCount()
+	{
+		return frame;
+	}
+	
 	public Bitmap getFrame()
 	{
 		fps ++;

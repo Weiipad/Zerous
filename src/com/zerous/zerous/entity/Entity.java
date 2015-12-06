@@ -6,8 +6,8 @@ import com.zerous.zerous.math.*;
 
 public class Entity extends GameObject
 {
+	public Vec2 velocity;
 	Vec2 position;
-	Vec2 velocity;
 	Bitmap body;
 	
 	float x, y;
@@ -30,31 +30,21 @@ public class Entity extends GameObject
 		velocity = new Vec2(0, 0);
 	}
 	
+	public void setVelocity(Vec2 v)
+	{
+		velocity = v;
+	}
+	
+	public float getVelocityY()
+	{
+		return velocity.y;
+	}
+	
 	//设置坐标系
 	public void set(float x, float y)
 	{
 		this.x = x;
 		this.y = y;
-	}
-	
-	public void up()
-	{
-		position.y -= velocity.y;
-	}
-	
-	public void down()
-	{
-		position.y += velocity.y;
-	}
-	
-	public void right()
-	{
-		position.x += velocity.x;
-	}
-	
-	public void left()
-	{
-		position.x -= velocity.x;
 	}
 	
 	public Vec2 getPosition()
@@ -75,6 +65,8 @@ public class Entity extends GameObject
 	@Override
 	public void draw(Canvas c)
 	{
+		position.x += velocity.x;
+		position.y += velocity.y;
 		c.drawBitmap(body, position.x * x, position.y * y, null);
 	}
 }

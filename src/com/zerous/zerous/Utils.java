@@ -7,6 +7,7 @@ public class Utils
 {
 	public static Context context;
 	static Paint paint;
+	
 	public static void init(Context c)
 	{
 		context = c;

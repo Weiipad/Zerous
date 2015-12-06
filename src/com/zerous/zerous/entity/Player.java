@@ -7,14 +7,18 @@ import android.graphics.*;
 public class Player extends Entity
 {
 	Animation running;
-	public Player(Vec2 position)
+	public Player(Bitmap body, Vec2 position)
 	{
-		super(position);
+		super(body, position);
 	}
 
 	@Override
 	public void draw(Canvas c)
-	{
+	{	
 		super.draw(c);
+		if(position.y >= 5)
+			velocity.y = 0;
+		else
+			velocity.y += 0.003f;
 	}
 }

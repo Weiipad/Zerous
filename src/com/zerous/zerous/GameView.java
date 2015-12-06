@@ -7,6 +7,8 @@ import com.zerous.zerous.screens.*;
 import android.util.*;
 import android.widget.*;
 import com.zerous.zerous.io.*;
+import java.io.*;
+import android.os.*;
 
 public class GameView extends SurfaceView implements Runnable
 {
@@ -39,6 +41,11 @@ public class GameView extends SurfaceView implements Runnable
 		
 		context = c;
 		
+		if(!new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Info.GAME_PATH).exists())
+			new File(Environment.getExternalStorageDirectory()
+								.getAbsolutePath() 
+								+ "/" 
+								+ Info.GAME_PATH).mkdirs();
 		Settings.load();
 		
 		this.framebuffer = framebuffer;
@@ -157,6 +164,8 @@ public class GameView extends SurfaceView implements Runnable
 		//Input.TOUCH_2_X = Input.TOUCH_2_Y = 0;
 		return true;
 	}
+	
+	
 	
 	public void setScreen(Screen scr)
 	{
