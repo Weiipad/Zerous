@@ -22,13 +22,13 @@ public class List extends Ui
 	{
 		if(OldInput.TOUCH_STATE == OldInput.TOUCH_STATE_DOWN)
 		{
-			a = OldInput.TOUCH_Y - listY;
+			//a = OldInput.TOUCH_Y - listY;
 			//b = Input
 			
 		}
 		else if(OldInput.TOUCH_STATE == OldInput.TOUCH_STATE_MOVE)
 		{
-			listY = OldInput.TOUCH_X - a;
+			//listY = OldInput.TOUCH_X - a;
 		}
 		
 		//c.drawText("T", 0, listY, new Paint());

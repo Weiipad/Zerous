@@ -6,6 +6,7 @@ import com.zerous.zerous.input.Input.*;
 import com.zerous.zerous.utils.*;
 import com.zerous.zerous.utils.Pool.*;
 import java.util.*;
+import com.zerous.zerous.*;
 
 public class TouchHandler implements OnTouchListener
 {
@@ -60,6 +61,7 @@ public class TouchHandler implements OnTouchListener
 				{
 					case MotionEvent.ACTION_DOWN:
 					case MotionEvent.ACTION_POINTER_DOWN:
+						OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_DOWN;
 						touchEvent = touchEventPool.newObject();
 						touchEvent.type = TouchEvent.TOUCH_DOWN;
 						touchEvent.pointer = pointerId;
@@ -73,6 +75,7 @@ public class TouchHandler implements OnTouchListener
 					case MotionEvent.ACTION_UP:
 					case MotionEvent.ACTION_POINTER_UP:
 					case MotionEvent.ACTION_CANCEL:
+						OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_UP;
 						touchEvent = touchEventPool.newObject();
 						touchEvent.type = TouchEvent.TOUCH_UP;
 						touchEvent.pointer = pointerId;
@@ -84,6 +87,7 @@ public class TouchHandler implements OnTouchListener
 						break;
 					
 					case MotionEvent.ACTION_MOVE:
+						OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_MOVE;
 						touchEvent = touchEventPool.newObject();
 						touchEvent.type = touchEvent.TOUCH_MOVE;
 						touchEvent.pointer = pointerId;

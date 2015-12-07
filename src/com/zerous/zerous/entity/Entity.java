@@ -14,10 +14,12 @@ public class Entity extends GameObject
 	float x, y;
 	
 	
-	enum State
+	public enum State
 	{
 		Forward, Back, Left, Right, Fall, Jump, Idle
 	}
+	
+	public State state;
 	
 	public Entity(Bitmap body, Vec2 position)
 	{
@@ -72,8 +74,7 @@ public class Entity extends GameObject
 	@Override
 	public void draw(Canvas c)
 	{
-		position.x += velocity.x;
-		position.y += velocity.y;
+		position.add(velocity);
 		c.drawBitmap(body, position.x * x, position.y * y, null);
 		//c.drawPoint(position.x * x, position.y * y, new Paint());
 	}

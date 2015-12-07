@@ -2,16 +2,16 @@ package com.zerous.zerous.screens;
 
 import android.graphics.*;
 import com.zerous.zerous.*;
-import com.zerous.zerous.ui.*;
-import com.zerous.zerous.world.*;
-import android.widget.Toast;
 import com.zerous.zerous.entity.*;
 import com.zerous.zerous.math.*;
+import com.zerous.zerous.ui.*;
 import com.zerous.zerous.utils.*;
+import com.zerous.zerous.world.*;
+import com.zerous.zerous.entity.Entity.*;
 
 public class GameScreen extends Screen
 {
-	Button pause, left, right, ahead, back, jump, place;
+	Button pause, left, right, jump, place;
 	int x, y;
 	
 	String debug;
@@ -28,16 +28,11 @@ public class GameScreen extends Screen
 	{
 		super(g);
 		pause = new Button(Info.SCREEN_WIDTH - Resources.PAUSE_BUTTON_UP.getWidth()/2, Resources.PAUSE_BUTTON_UP.getHeight()/2, Resources.PAUSE_BUTTON_UP, Resources.PAUSE_BUTTON_DOWN);
-		left = new Button(Resources.LEFT_UP.getWidth(), Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight()*2, Resources.LEFT_UP, Resources.LEFT_UP);
-		right = new Button(Resources.RIGHT_UP.getWidth()*3, Info.SCREEN_HEIGHT - Resources.RIGHT_UP.getHeight()*2, Resources.RIGHT_UP, Resources.RIGHT_UP);
-		ahead = new Button(Resources.AHEAD.getWidth()*2, Info.SCREEN_HEIGHT - Resources.AHEAD.getHeight()*3, Resources.AHEAD, Resources.AHEAD);
-		back = new Button(Resources.BACK.getWidth()*2, Info.SCREEN_HEIGHT -Resources.BACK.getHeight(), Resources.BACK, Resources.BACK);
+		left = new Button(Resources.LEFT_UP.getWidth(), Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight(), Resources.LEFT_UP, Resources.LEFT_UP);
+		right = new Button(Resources.RIGHT_UP.getWidth()*3, Info.SCREEN_HEIGHT - Resources.RIGHT_UP.getHeight(), Resources.RIGHT_UP, Resources.RIGHT_UP);
 		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.JUMP, Resources.JUMP);
 		place = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()*2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.scale( Resources.JUMP, 1, -1), Resources.scale(Resources.JUMP, 1, -1));
 		
-		if(Settings.TILEPLACER_MODE)
-			initPlaceUi();
-		else
 			initUi();
 		
 		fps = new FPSCounter();
@@ -75,8 +70,8 @@ public class GameScreen extends Screen
 		left.draw(c);
 		right.draw(c);
 		jump.draw(c);
-		ahead.draw(c);
-		back.draw(c);
+		//ahead.draw(c);
+		//back.draw(c);
 		place.draw(c);
 		if(Settings.DEBUG)
 		{
@@ -111,22 +106,6 @@ public class GameScreen extends Screen
 			}
 		});
 		
-		ahead.setClickEvent(new Button.OnClickEvent()
-		{
-			public void onClick()
-			{
-				
-			}
-		});
-		
-		back.setClickEvent(new Button.OnClickEvent()
-		{
-			public void onClick()
-			{
-				
-			}
-		});
-		
 		jump.setClickEvent(new Button.OnClickEvent()
 		{
 			public void onClick()
@@ -142,7 +121,8 @@ public class GameScreen extends Screen
 		{
 			public void onClick()
 			{
-				w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 0);
+				//if(Settings.TILEPLACER_MODE)
+					w.placeBlock((int)t.getPosition().x, (int)t.getPosition().y, 0);
 			}
 		});
 	}
@@ -162,11 +142,13 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					pl.velocity.x = -0.1f;
+					pl.state = Entity.State.Left;
 				}
 
 				public void onTouchUp()
 				{
 					pl.velocity.x = 0;
+					//pl.state = Entity.State.Idle;
 				}
 			});
 
@@ -175,6 +157,7 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					pl.velocity.x = 0.1f;
+					pl.state = Entity.State.Right;
 				}
 
 				public void onTouchUp()
@@ -182,58 +165,37 @@ public class GameScreen extends Screen
 					//pl.velocity.x = 0;
 				}
 			});
-
-			ahead.setTouchEvent(new Button.OnTouchEvent()
+			
+			jump.setTouchEvent(new Button.OnTouchEvent()
 			{
 				public void onTouchDown()
 				{
-					
+					pl.jump();
 				}
-
+				
 				public void onTouchUp()
-				{
-
-				}
-			});
-
-			back.setTouchEvent(new Button.OnTouchEvent()
-			{
-				public void onTouchDown()
 				{
 					
 				}
-
-				public void onTouchUp()
-				{
-
-				}
 			});
-
-			jump.setClickEvent(new Button.OnClickEvent()
+			
+			
+			place.setClickEvent(new Button.OnClickEvent()
 			{
 				public void onClick()
 				{
-					debug = "Jump";
-					pl.jump();
-					
-					//Oops, I can't use the Toast
-					/*try
-					 {
-					 Toast.makeText(game.context, "Jump", Toast.LENGTH_SHORT).show();
-					 }catch(Exception e)
-					 {
-
-					 }*/
+					if(Settings.TILEPLACER_MODE)
+					{
+						if(w.getBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y) != 0)
+						{
+							w.placeBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y, 0);
+						}
+						else
+						{
+							w.placeBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y, 1);
+						}
+					}
 				}
 			});
-	}
-	
-	public void jump(boolean jumping)
-	{
-		int a = 0;
-		if(jumping && a<10)
-		{
-			w.y++;
-		}
 	}
 }

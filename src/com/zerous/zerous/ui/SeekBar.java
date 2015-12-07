@@ -26,7 +26,7 @@ public class SeekBar extends Ui
 		c.drawRect(x - length/2, y - height/2, x + length/2, y + height/2, paint);
 		if(MathUtil.isInside(x - length/2, y -  height*8, length, height*16)/*&&Input.TOUCH_STATE == Input.TOUCH_STATE_DOWN*/)
 		{
-			cx = OldInput.TOUCH_X;
+			cx = Core.input.getTouchX(0);
 		}
 		
 	/*	if(Input.TOUCH_STATE == Input.TOUCH_STATE_UP)

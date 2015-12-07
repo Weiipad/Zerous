@@ -38,15 +38,25 @@ public class Resources
 		BRICK = 2;
 	}
 	
+	public static class PlayerAnimation
+	{
+		public static Bitmap[] playerFrames;
+		
+		public static void init()
+		{
+			playerFrames = loadMap("player.png", Info.GUI_ZOOM, Info.GUI_ZOOM);
+		}
+	}
+	
 	public static class Blocks
 	{
 		static Bitmap blocksMap;
 		public static Bitmap[] blockList;
 		
-		public static void init(Context c)
+		public static void init()
 		{
 			int x = 0, y = 0;
-			blocksMap = FileLoader.loadBitmapFromAssets(c, "blocks/terrain2.png");
+			blocksMap = FileLoader.loadBitmapFromAssets("blocks/terrain2.png");
 			blockList = new Bitmap[(blocksMap.getWidth()/16) * (blocksMap.getHeight()/16)];
 			for(int a = 0;a < (blocksMap.getWidth()/16) * (blocksMap.getHeight()/16);a++)
 			{
@@ -62,42 +72,63 @@ public class Resources
 		}
 	}
 	
+	public static Bitmap[] loadMap(String filName, float zx, float zy)
+	{
+		Bitmap map = FileLoader.loadBitmapFromAssets("player.png");
+		Bitmap[] list = new Bitmap[(map.getWidth()/16) * (map.getHeight()/16)];
+		int x = 0, y = 0;
+		
+		for(int a = 0;a < (map.getWidth()/16) * (map.getHeight()/16);a++)
+		{
+			if(x >= map.getWidth()/16)
+			{
+				y++;
+				x = 0;
+			}
+			list[a] = Bitmap.createBitmap(map, x*16, y*16, 16, 16);
+			x++;
+			list[a] = scale(list[a], zx, zy);
+		}
+		return list;
+	}
+	
 	
 	public static void init(Context c)
 	{
-		START_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/start_up.png", Info.GUI_ZOOM);
-		START_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/start_down.png", Info.GUI_ZOOM);
-		PAUSE_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/pause_up.png", Info.GUI_ZOOM);
-		PAUSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/pause_down.png", Info.GUI_ZOOM);
-		SETTINGS_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/settings_up.png", Info.GUI_ZOOM);
-		SETTINGS_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/settings_down.png", Info.GUI_ZOOM);
-		ABOUT_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/about_up.png", Info.GUI_ZOOM);
-		ABOUT_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/about_down.png", Info.GUI_ZOOM);
-		BACK_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/back_down.png", Info.GUI_ZOOM);
-		BACK_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/back_up.png", Info.GUI_ZOOM);
-		CHECKBOX_CHECKED = FileLoader.loadBitmapFromAssets(c, "gui/check_checked.png", Info.GUI_ZOOM);
-		CHECKBOX_UNCHECKED = FileLoader.loadBitmapFromAssets(c, "gui/check_unchecked.png", Info.GUI_ZOOM);
-		CLOSE_BUTTON_UP = FileLoader.loadBitmapFromAssets(c, "gui/close_up.png", Info.GUI_ZOOM);
-		CLOSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets(c, "gui/close_down.png", Info.GUI_ZOOM);
-		BANNER = FileLoader.loadBitmapFromAssets(c, "gui/banner.png", Info.GUI_ZOOM);
-		LABEL = FileLoader.loadBitmapFromAssets(c, "gui/label.png", Info.SCREEN_WIDTH, Info.GUI_ZOOM);
-		LEFT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", Info.GUI_ZOOM*1.5f);
-		RIGHT_UP = FileLoader.loadBitmapFromAssets(c, "gui/control/left.png", -Info.GUI_ZOOM*1.5f, Info.GUI_ZOOM*1.5f);
-		AHEAD = FileLoader.loadBitmapFromAssets(c, "gui/control/ahead.png", Info.GUI_ZOOM*1.5f);
-		BACK = FileLoader.loadBitmapFromAssets(c, "gui/control/back.png", Info.GUI_ZOOM*1.5f);
-		JUMP = FileLoader.loadBitmapFromAssets(c, "gui/control/jump.png", Info.GUI_ZOOM*1.5f);
-		LOGO = FileLoader.loadBitmapFromAssets(c, "gui/logo.png", Info.GUI_ZOOM*2);
-		TILE_PLACER = FileLoader.loadBitmapFromAssets(c, "gui/tileplacer.png", Info.GUI_ZOOM);
+		START_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/start_up.png", Info.GUI_ZOOM);
+		START_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/start_down.png", Info.GUI_ZOOM);
+		PAUSE_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/pause_up.png", Info.GUI_ZOOM);
+		PAUSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/pause_down.png", Info.GUI_ZOOM);
+		SETTINGS_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/settings_up.png", Info.GUI_ZOOM);
+		SETTINGS_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/settings_down.png", Info.GUI_ZOOM);
+		ABOUT_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/about_up.png", Info.GUI_ZOOM);
+		ABOUT_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/about_down.png", Info.GUI_ZOOM);
+		BACK_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/back_down.png", Info.GUI_ZOOM);
+		BACK_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/back_up.png", Info.GUI_ZOOM);
+		CHECKBOX_CHECKED = FileLoader.loadBitmapFromAssets( "gui/check_checked.png", Info.GUI_ZOOM);
+		CHECKBOX_UNCHECKED = FileLoader.loadBitmapFromAssets( "gui/check_unchecked.png", Info.GUI_ZOOM);
+		CLOSE_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/close_up.png", Info.GUI_ZOOM);
+		CLOSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/close_down.png", Info.GUI_ZOOM);
+		BANNER = FileLoader.loadBitmapFromAssets( "gui/banner.png", Info.GUI_ZOOM);
+		LABEL = FileLoader.loadBitmapFromAssets( "gui/label.png", Info.SCREEN_WIDTH, Info.GUI_ZOOM);
+		LEFT_UP = FileLoader.loadBitmapFromAssets( "gui/control/left.png", Info.GUI_ZOOM*1.5f);
+		RIGHT_UP = FileLoader.loadBitmapFromAssets( "gui/control/left.png", -Info.GUI_ZOOM*1.5f, Info.GUI_ZOOM*1.5f);
+		AHEAD = FileLoader.loadBitmapFromAssets( "gui/control/ahead.png", Info.GUI_ZOOM*1.5f);
+		BACK = FileLoader.loadBitmapFromAssets( "gui/control/back.png", Info.GUI_ZOOM*1.5f);
+		JUMP = FileLoader.loadBitmapFromAssets( "gui/control/jump.png", Info.GUI_ZOOM*1.5f);
+		LOGO = FileLoader.loadBitmapFromAssets( "gui/logo.png", Info.GUI_ZOOM*2);
+		TILE_PLACER = FileLoader.loadBitmapFromAssets( "gui/tileplacer.png", Info.GUI_ZOOM);
 		
 		
-		A_PIXEL = FileLoader.loadBitmapFromAssets(c, "gui/apixel.png", Info.GUI_ZOOM);
+		A_PIXEL = FileLoader.loadBitmapFromAssets( "gui/apixel.png", Info.GUI_ZOOM);
 		Info.PIXEL_SIZE = A_PIXEL.getWidth();
-		BLOCK_BASIC = FileLoader.loadBitmapFromAssets(c, "blockbasic.png", Info.GUI_ZOOM);
+		BLOCK_BASIC = FileLoader.loadBitmapFromAssets( "blockbasic.png", Info.GUI_ZOOM);
 		Info.TILE_WIDTH = BLOCK_BASIC.getWidth();
 		Info.TILE_HEIGHT = BLOCK_BASIC.getHeight();
-		I = FileLoader.loadBitmapFromAssets(c, "image1.png", Info.GUI_ZOOM);
+		I = FileLoader.loadBitmapFromAssets( "image1.png", Info.GUI_ZOOM);
 		
-		Blocks.init(c);
+		Blocks.init();
+		PlayerAnimation.init();
 	}
 	
 	

@@ -78,20 +78,21 @@ public class Button extends Ui
 	@Override
 	public void draw(Canvas c)
 	{
+		
 		boolean a = Core.input.isTouchDown(0) || Core.input.isTouchDown(1);
 		boolean b = MathUtil.isInside(position.x - size.w/2, position.y - size.h/2, size.w, size.h);
 		
 		if(a && b)
 		{
-			count ++;
-			if(count <= 1&&click != null)
-			{
-				click.onClick();
-			}
+			clickFlag = true;
 		}
 		else
 		{
-			count = 0;
+			if(clickFlag &&click != null)
+			{
+				click.onClick();
+				clickFlag = false;
+			}
 		}
 		
 		if(a && b)

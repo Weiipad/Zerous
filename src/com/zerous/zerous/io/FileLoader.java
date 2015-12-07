@@ -4,24 +4,22 @@ import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
 import java.io.*;
+import com.zerous.zerous.*;
 
 public class FileLoader
 {
-	public static Bitmap loadBitmapFromAssets(Context c, String fileName, float xy)
+	public static Bitmap loadBitmapFromAssets(String fileName, float xy)
 	{
-		AssetManager assets = c.getAssets();
-		InputStream is = null;
-
+		Bitmap bitmap = null;
 		try
 		{
-			is = assets.open(fileName);
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			bitmap = BitmapFactory.decodeStream(Core.files.readAsset(fileName) , null, options);
 		}
-		catch (IOException e)
+		catch(IOException e)
 		{
-			e.printStackTrace();
+			
 		}
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
 		
 		Matrix m = new Matrix();
 		m.postScale(xy, xy);
@@ -29,45 +27,37 @@ public class FileLoader
 		return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
 	}
 	
-	public static Bitmap loadBitmapFromAssets(Context c, String fileName, float x, float y)
+	public static Bitmap loadBitmapFromAssets(String fileName, float x, float y)
 	{
-		AssetManager assets = c.getAssets();
-		InputStream is = null;
-
+		Bitmap bitmap = null;
 		try
 		{
-			is = assets.open(fileName);
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			bitmap = BitmapFactory.decodeStream(Core.files.readAsset(fileName) , null, options);
 		}
-		catch (IOException e)
+		catch(IOException e)
 		{
-			e.printStackTrace();
-			
-		}
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
 
+		}
+		
 		Matrix m = new Matrix();
 		m.postScale(x, y);
 
 		return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
 	}
 	
-	public static Bitmap loadBitmapFromAssets(Context c, String fileName)
+	public static Bitmap loadBitmapFromAssets(String fileName)
 	{
-		AssetManager assets = c.getAssets();
-		InputStream is = null;
-
+		Bitmap bitmap = null;
 		try
 		{
-			is = assets.open(fileName);
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			bitmap = BitmapFactory.decodeStream(Core.files.readAsset(fileName) , null, options);
 		}
-		catch (IOException e)
+		catch(IOException e)
 		{
-			e.printStackTrace();
+
 		}
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
-		
 		return bitmap;
 	}
 }
