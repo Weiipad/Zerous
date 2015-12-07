@@ -12,6 +12,7 @@ import com.zerous.zerous.entity.Entity.*;
 public class GameScreen extends Screen
 {
 	Button pause, left, right, jump, place;
+	CheckBox tilePlaceMode;
 	int x, y;
 	
 	String debug;
@@ -33,7 +34,11 @@ public class GameScreen extends Screen
 		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.JUMP, Resources.JUMP);
 		place = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()*2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.scale( Resources.JUMP, 1, -1), Resources.scale(Resources.JUMP, 1, -1));
 		
-			initUi();
+		tilePlaceMode = new CheckBox(50 * Info.GUI_ZOOM, 50, "方块放置模式(测试)");
+		tilePlaceMode.setState(Settings.TILEPLACER_MODE);
+		
+		
+		initUi();
 		
 		fps = new FPSCounter();
 		
@@ -73,6 +78,10 @@ public class GameScreen extends Screen
 		//ahead.draw(c);
 		//back.draw(c);
 		place.draw(c);
+		
+		tilePlaceMode.draw(c);
+		Settings.TILEPLACER_MODE = tilePlaceMode.isChecked();
+		
 		if(Settings.DEBUG)
 		{
 			fps.drawFPS(c);

@@ -62,7 +62,7 @@ public class CheckBox extends Ui
 			src = unchecked;
 			
 		c.drawBitmap(src, position.x - size.w/2, position.y - size.h/2, null);
-		c.drawText(name + count, position.x + size.w/2 + Info.GUI_ZOOM, position.y, paint);
+		c.drawText(name, position.x + size.w/2 + Info.GUI_ZOOM, position.y, paint);
 	}
 	
 }

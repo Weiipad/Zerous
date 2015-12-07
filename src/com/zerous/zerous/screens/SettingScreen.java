@@ -7,7 +7,7 @@ import com.zerous.zerous.ui.*;
 public class SettingScreen extends Screen
 {
 	Label title;
-	CheckBox debug, quickStart, tilePlaceMode;
+	CheckBox debug, quickStart;
 	Button toDebug;
 	public SettingScreen(GameView g)
 	{
@@ -15,14 +15,14 @@ public class SettingScreen extends Screen
 		title = new Label(g, "设置");
 		title.setBackButtonTo(game.mainScreen);
 		
-		debug = new CheckBox(500, 500, "debug模式");
-		quickStart = new CheckBox(500, 400, "快速启动");
-		tilePlaceMode = new CheckBox(500, 300, "方块放置模式(测试)");
+		debug = new CheckBox(Resources.CHECKBOX_CHECKED.getWidth()/2, title.height + Resources.CHECKBOX_CHECKED.getHeight()/2, "debug模式");
+		quickStart = new CheckBox(Resources.CHECKBOX_CHECKED.getWidth()/2, title.height + Resources.CHECKBOX_CHECKED.getHeight()*2, "快速启动");
+		
 		
 		debug.setState(Settings.DEBUG);
 		quickStart.setState(Settings.QUICK_START);
-		tilePlaceMode.setState(Settings.TILEPLACER_MODE);
-		toDebug = new Button(600, 600, 32*Info.GUI_ZOOM, 16*Info.GUI_ZOOM);
+
+		toDebug = new Button(Info.SCREEN_WIDTH/2, Info.SCREEN_HEIGHT/2, 32*Info.GUI_ZOOM, 16*Info.GUI_ZOOM);
 		toDebug.setText("Debug");
 		toDebug.setClickEvent(new Button.OnClickEvent()
 		{
@@ -40,10 +40,9 @@ public class SettingScreen extends Screen
 		title.draw(c);
 		debug.draw(c);
 		quickStart.draw(c);
-		tilePlaceMode.draw(c);
 		toDebug.draw(c);
 		Settings.DEBUG = debug.isChecked();
 		Settings.QUICK_START = quickStart.isChecked();
-		Settings.TILEPLACER_MODE = tilePlaceMode.isChecked();
+		
 	}
 }
