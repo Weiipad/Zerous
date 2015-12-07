@@ -56,21 +56,7 @@ public class World extends GameObject
 		for(int x = 0;x < terrain.length;x++)
 		{
 			for(int y = 0;y < terrain[0].length;y++)
-			{
-				/*if(y < 1)
-				{
-					terrain[x][y] = 1;
-				}
-				else if(y >= 1&&y < 5)
-				{
-					terrain[x][y] = 2;
-				}
-				else
-				{
-					terrain[x][y] = 3;
-				}*/
-				
-				
+			{			
 				if(terrain[x][y] == 1)
 					c.drawBitmap(Resources.Blocks.blockList[Resources.ID.GRASS], this.x + x*Info.TILE_WIDTH, this.y + y*Info.TILE_HEIGHT, null);
 				else if(terrain[x][y] == 2)

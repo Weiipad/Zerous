@@ -44,51 +44,38 @@ public class Resources
 		
 		public static void init()
 		{
-			playerFrames = loadMap("player.png", Info.GUI_ZOOM, Info.GUI_ZOOM);
+			playerFrames = loadMap("player.png", 16, Info.GUI_ZOOM, Info.GUI_ZOOM);
 		}
 	}
 	
 	public static class Blocks
 	{
-		static Bitmap blocksMap;
 		public static Bitmap[] blockList;
 		
 		public static void init()
 		{
-			int x = 0, y = 0;
-			blocksMap = FileLoader.loadBitmapFromAssets("blocks/terrain2.png");
-			blockList = new Bitmap[(blocksMap.getWidth()/16) * (blocksMap.getHeight()/16)];
-			for(int a = 0;a < (blocksMap.getWidth()/16) * (blocksMap.getHeight()/16);a++)
-			{
-				if(x >= blocksMap.getWidth()/16)
-				{
-					y++;
-					x = 0;
-				}
-				blockList[a] = Bitmap.createBitmap(blocksMap, x*16, y*16, 16, 16);
-				x++;
-				blockList[a] = scale(blockList[a], Info.GUI_ZOOM, Info.GUI_ZOOM);
-			}
+			blockList = loadMap("blocks/terrain2.png", 16, Info.GUI_ZOOM, Info.GUI_ZOOM);
 		}
 	}
 	
-	public static Bitmap[] loadMap(String filName, float zx, float zy)
+	public static Bitmap[] loadMap(String fileName, int size, float zx, float zy)
 	{
-		Bitmap map = FileLoader.loadBitmapFromAssets("player.png");
-		Bitmap[] list = new Bitmap[(map.getWidth()/16) * (map.getHeight()/16)];
+		Bitmap map = FileLoader.loadBitmapFromAssets(fileName);
+		Bitmap[] list = new Bitmap[(map.getWidth()/size) * (map.getHeight()/size)];
 		int x = 0, y = 0;
 		
-		for(int a = 0;a < (map.getWidth()/16) * (map.getHeight()/16);a++)
+		for(int a = 0;a < (map.getWidth()/size) * (map.getHeight()/size);a++)
 		{
-			if(x >= map.getWidth()/16)
+			if(x >= map.getWidth()/size)
 			{
 				y++;
 				x = 0;
 			}
-			list[a] = Bitmap.createBitmap(map, x*16, y*16, 16, 16);
+			list[a] = Bitmap.createBitmap(map, x*size, y*size, size, size);
 			x++;
 			list[a] = scale(list[a], zx, zy);
 		}
+		map.recycle();
 		return list;
 	}
 	
