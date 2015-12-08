@@ -36,7 +36,10 @@ public class World extends GameObject
 	
 	public int getBlock(int x, int y)
 	{
-		return terrain[x][y];
+		if(x >= 0&&y >= 0&&x < terrain.length&& y < terrain[0].length)
+			return terrain[x][y];
+		else
+			return -1;
 	}
 
 	@Override

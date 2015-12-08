@@ -20,7 +20,7 @@ public class Button extends Ui
 	
 	Bitmap src, up, down;
 	
-	boolean clickFlag = true;
+	boolean clickFlag = false;
 	
 	OnClickEvent click;
 	OnTouchEvent touch;
@@ -88,9 +88,12 @@ public class Button extends Ui
 		}
 		else
 		{
-			if(clickFlag &&click != null)
+			if(clickFlag)
 			{
-				click.onClick();
+				if(touch != null)
+					touch.onTouchUp();
+				if(click != null)	
+					click.onClick();
 				clickFlag = false;
 			}
 		}
@@ -112,8 +115,7 @@ public class Button extends Ui
 				paint.setColor(COLOR_BUTTON_UP);
 			else
 				src = up;
-			if(touch != null)
-				touch.onTouchUp();
+			
 		}
 		
 		if(up == null && down == null)

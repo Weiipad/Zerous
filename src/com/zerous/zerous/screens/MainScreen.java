@@ -27,7 +27,7 @@ public class MainScreen extends Screen
 		{
 			public void onClick()
 			{
-				game.setScreen(game.playScreen);
+				game.setScreen(new GameScreen(game));
 			}
 		});
 		

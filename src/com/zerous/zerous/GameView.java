@@ -56,7 +56,7 @@ public class GameView extends SurfaceView implements Runnable
 		androidRes = c.getResources();
 		
 		Utils.init(c);
-		Resources.init(c);
+		Resources.init();
 		
 		
 		mainScreen = new MainScreen(this);

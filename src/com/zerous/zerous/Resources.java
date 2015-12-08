@@ -80,7 +80,7 @@ public class Resources
 	}
 	
 	
-	public static void init(Context c)
+	public static void init()
 	{
 		START_BUTTON_UP = FileLoader.loadBitmapFromAssets( "gui/start_up.png", Info.GUI_ZOOM);
 		START_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/start_down.png", Info.GUI_ZOOM);
@@ -98,11 +98,11 @@ public class Resources
 		CLOSE_BUTTON_DOWN = FileLoader.loadBitmapFromAssets( "gui/close_down.png", Info.GUI_ZOOM);
 		BANNER = FileLoader.loadBitmapFromAssets( "gui/banner.png", Info.GUI_ZOOM);
 		LABEL = FileLoader.loadBitmapFromAssets( "gui/label.png", Info.SCREEN_WIDTH, Info.GUI_ZOOM);
-		LEFT_UP = FileLoader.loadBitmapFromAssets( "gui/control/left.png", Info.GUI_ZOOM*1.5f);
-		RIGHT_UP = FileLoader.loadBitmapFromAssets( "gui/control/left.png", -Info.GUI_ZOOM*1.5f, Info.GUI_ZOOM*1.5f);
-		AHEAD = FileLoader.loadBitmapFromAssets( "gui/control/ahead.png", Info.GUI_ZOOM*1.5f);
-		BACK = FileLoader.loadBitmapFromAssets( "gui/control/back.png", Info.GUI_ZOOM*1.5f);
-		JUMP = FileLoader.loadBitmapFromAssets( "gui/control/jump.png", Info.GUI_ZOOM*1.5f);
+		LEFT_UP = FileLoader.loadBitmapFromAssets( "gui/control/left.png", Info.GUI_ZOOM*1.6f);
+		RIGHT_UP = FileLoader.loadBitmapFromAssets( "gui/control/left.png", -Info.GUI_ZOOM*1.6f, Info.GUI_ZOOM*1.6f);
+		AHEAD = FileLoader.loadBitmapFromAssets( "gui/control/ahead.png", Info.GUI_ZOOM*1.6f);
+		BACK = FileLoader.loadBitmapFromAssets( "gui/control/back.png", Info.GUI_ZOOM*1.6f);
+		JUMP = FileLoader.loadBitmapFromAssets( "gui/control/jump.png", Info.GUI_ZOOM*1.6f);
 		LOGO = FileLoader.loadBitmapFromAssets( "gui/logo.png", Info.GUI_ZOOM*2);
 		TILE_PLACER = FileLoader.loadBitmapFromAssets( "gui/tileplacer.png", Info.GUI_ZOOM);
 		

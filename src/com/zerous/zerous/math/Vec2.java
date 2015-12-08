@@ -22,4 +22,10 @@ public class Vec2
 		y -= v.y;
 		return this;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "x:" + x + "y:" + y;
+	}
 }

@@ -5,6 +5,7 @@ import com.zerous.zerous.*;
 import com.zerous.zerous.entity.*;
 import com.zerous.zerous.math.*;
 import com.zerous.zerous.ui.*;
+
 import com.zerous.zerous.utils.*;
 import com.zerous.zerous.world.*;
 import com.zerous.zerous.entity.Entity.*;
@@ -49,7 +50,10 @@ public class GameScreen extends Screen
 		
 		paint.setTextSize(Info.GUI_ZOOM * 4);
 		paint.setAntiAlias(true);
-		pl = new Player(Resources.BLOCK_BASIC, new Vec2(0, 5));
+		pl = new Player(Resources.BLOCK_BASIC, new Vec2(0, 5), w);
+		w.placeBlock(0, 8, 1);
+		w.placeBlock(1, 8, 1);
+		w.placeBlock(2, 8, 1);
 		w.addEntity(pl);
 	}
 	
@@ -85,7 +89,7 @@ public class GameScreen extends Screen
 		if(Settings.DEBUG)
 		{
 			fps.drawFPS(c);
-			c.drawText(debug + pl.getVelocityY() + pl.getVelocityX(), 180, 180, paint);
+			c.drawText(debug + pl.getPosition(), 180, 180, paint);
 		}
 	}
 	
@@ -150,6 +154,7 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
+					pl.tp = -2;
 					pl.velocity.x = -0.1f;
 					pl.state = Entity.State.Left;
 				}
@@ -157,7 +162,7 @@ public class GameScreen extends Screen
 				public void onTouchUp()
 				{
 					pl.velocity.x = 0;
-					//pl.state = Entity.State.Idle;
+					pl.state = Entity.State.Idle;
 				}
 			});
 
@@ -165,13 +170,15 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
+					pl.tp = 3;
 					pl.velocity.x = 0.1f;
 					pl.state = Entity.State.Right;
 				}
 
 				public void onTouchUp()
 				{
-					//pl.velocity.x = 0;
+					pl.velocity.x = 0;
+					pl.state = Entity.State.Idle;
 				}
 			});
 			
@@ -180,6 +187,7 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					pl.jump();
+					
 				}
 				
 				public void onTouchUp()
