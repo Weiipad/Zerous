@@ -3,16 +3,16 @@ package com.zerous.zerous.ui;
 import com.zerous.zerous.*;
 import android.graphics.*;
 
-public class List extends Ui
+public class GameList extends Ui
 {
 	public float listY;
 	float a, b;
-	public List()
+	public GameList()
 	{
 		
 	}
 	
-	public List(float x, float y, float w, float h)
+	public GameList(float x, float y, float w, float h)
 	{
 		
 	}

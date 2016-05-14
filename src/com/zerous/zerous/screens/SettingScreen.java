@@ -9,9 +9,9 @@ public class SettingScreen extends Screen
 	Label title;
 	CheckBox debug, quickStart;
 	Button toDebug;
-	public SettingScreen(GameView g)
+	public SettingScreen(GameView g, Screen p)
 	{
-		super(g);
+		super(g, p);
 		title = new Label(g, "设置");
 		title.setBackButtonTo(game.mainScreen);
 		

@@ -10,7 +10,7 @@ public class Player extends Entity
 {
 	Animation running, right;
 	Bitmap[] runningLeftBitmaps = new Bitmap[4], runningRightBitmaps = new Bitmap[4];
-	Bitmap tile;
+ 	Bitmap tile;
 	World world;
 	
 	public int tp, count;
@@ -38,60 +38,35 @@ public class Player extends Entity
 	public void draw(Canvas c)
 	{	
 		super.draw(c);
-		if(world.getBlock((int)position.x, (int)(position.y + 1 + velocity.y)) != 0||world.getBlock((int)position.x + 1, (int)(position.y + 1 + velocity.y)) != 0)
-		{
-			landed = true;
-			velocity.y = 0;
-			position.y = position.y - velocity.y;
-		}
-		else if(world.getBlock((int)position.x, (int)(position.y)) != 0 || world.getBlock((int)position.x + 1, (int)(position.y)) != 0)
-		{
-			velocity.y = 0;
-			position.y = (int)(position.y +1)+ velocity.y;
-			velocity.y += 0.005f;
-		}
-		else
-		{
-			velocity.y += 0.005f;
-			body = running.getFrame();
-			
-		}
 		
-		switch(state)
-		{
-			case Left:
-			{
-				body = running.getFrame();
-				break;
-			}
-			case Right:
-			{
-				body = right.getFrame();
-				break;
-			}
-			case Idle:
-			{
-				body = Resources.I;
-			}
-		}
 		
+		if(Settings.DEBUG)
+		{
+			/*
+			Utils.drawBox(c, (int)Math.rint(position.x) * x, (int)(Math.rint(position.y) - 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)Math.rint(position.x) * x, (int)(Math.rint(position.y) + 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(Math.rint(position.x) + 1) * x, (int)Math.rint(position.y) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(Math.rint(position.x) - 1) * x, (int)Math.rint(position.y) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			*/
+			Utils.drawBox(c, (int)(position.x) * x, (int)(position.y - 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x) * x, (int)(position.y + 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x + 1) * x, (int)(position.y) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x - 1) * x, (int)(position.y) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x + 1) * x, (int)(position.y - 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x + 1) * x, (int)(position.y + 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x + 1) * x, (int)(position.y + 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+			Utils.drawBox(c, (int)(position.x - 1) * x, (int)(position.y + 1) * y, Info.TILE_WIDTH, Info.TILE_HEIGHT);
+		}
 		if(Settings.TILEPLACER_MODE)
 			c.drawBitmap(tile, (int)(position.x + tp) * x, (int)(position.y) * y, null);
-		
-		/*if(position.x >= 5)
-			velocity.x = 0;
-		else
-			velocity.x -= 0.003f;*/
 	}
 	
 	public void jump()
 	{	
-		if(landed)
+		if(landed && !world.hasBlock((int)position.x, (int)position.y - 1))
 		{
 			velocity.y = -0.2f;
 			landed = false;
-			//count = 0;
-			//state = State.Jump;
 		}
 		//velocity.y = -0.2f;
 	}

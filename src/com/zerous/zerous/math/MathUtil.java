@@ -19,7 +19,7 @@ public class MathUtil
 		return false;
 	}
 
-	public static boolean isInside(Point position, Size size)
+	public static boolean isInside(Vec2 position, Size size)
 	{
 		if ((Core.input.getTouchX(0) > position.x - size.w / 2 && Core.input.getTouchX(0) < position.x + size.w / 2 && Core.input.getTouchY(0) > position.y - size.h / 2 && Core.input.getTouchY(0) < position.y + size.h / 2)
 			|| (Core.input.getTouchX(1) > position.x - size.w && Core.input.getTouchX(1) < position.x + size.w / 2 && Core.input.getTouchY(1) > position.y - size.h / 2 && Core.input.getTouchY(1) < position.y + size.h / 2))

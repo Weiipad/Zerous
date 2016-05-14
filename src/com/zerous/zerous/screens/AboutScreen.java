@@ -11,15 +11,15 @@ public class AboutScreen extends Screen
 	Bitmap[] ani = new Bitmap[4];
 	Bitmap self;
 	Animation anim;
-	public AboutScreen(GameView g)
+	public AboutScreen(GameView g, Screen p)
 	{
-		super(g);
+		super(g, p);
 		l = new Label(g, "关于");
 		l.setBackButtonTo(game.mainScreen);
 		
-		ani[0] = Resources.AHEAD;
+		//ani[0] = Resources.AHEAD;
 		ani[1] = Resources.LEFT_UP;
-		ani[2] = Resources.BACK;
+		//ani[2] = Resources.BACK;
 		ani[3] = Resources.RIGHT_UP;
 		anim = new Animation(Resources.Blocks.blockList, 10);
 	}
@@ -42,9 +42,9 @@ public class AboutScreen extends Screen
 				a = 0;
 			}
 		}*/
-		self  = anim.getFrame();
+		self = anim.getFrame();
 		
-		c.drawBitmap(self, 600, 600, null);
+		c.drawBitmap(anim.getFrame(), 600, 600, null);
 		c.drawText(anim.getFrameCount()+"", 600, 600, paint);
 	}
 }

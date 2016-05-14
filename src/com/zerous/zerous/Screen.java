@@ -1,19 +1,25 @@
 package com.zerous.zerous;
 
 import android.graphics.*;
+import java.util.*;
 
-public class Screen
+public abstract class Screen
 {
 	public GameView game;
+	public Screen parent;
 	protected Paint paint;
 	protected int clearColor;
-	public Screen(GameView game)
+	
+	private List<GameObject> children;
+	public Screen(GameView game, Screen parentScreen)
 	{
 		this.game = game;
+		parent = parentScreen;
 		paint = new Paint();
 		paint.setTextSize(32);
 		paint.setColor(Color.BLACK);
 		paint.setAntiAlias(true);
+		children = new ArrayList<GameObject>();
 		
 		clearColor = Color.WHITE;
 	}
@@ -30,6 +36,19 @@ public class Screen
 	
 	public void draw(Canvas c)
 	{
+		for(GameObject obj : children)
+		{
+			obj.update(c);
+		}
+		
 		c.drawColor(clearColor);
+	}
+	
+	public void drawChildren(Canvas c)
+	{
+		for(GameObject obj : children)
+		{
+			obj.draw(c);
+		}
 	}
 }

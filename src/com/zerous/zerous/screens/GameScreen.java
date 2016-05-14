@@ -26,14 +26,14 @@ public class GameScreen extends Screen
 	
 	boolean j, ab;
 	
-	public GameScreen(GameView g)
+	public GameScreen(GameView g, Screen p)
 	{
-		super(g);
-		pause = new Button(Info.SCREEN_WIDTH - Resources.PAUSE_BUTTON_UP.getWidth()/2, Resources.PAUSE_BUTTON_UP.getHeight()/2, Resources.PAUSE_BUTTON_UP, Resources.PAUSE_BUTTON_DOWN);
+		super(g, p);
+		pause = new Button(Info.SCREEN_WIDTH - Resources.PAUSE_BUTTON.getWidth()/2, Resources.PAUSE_BUTTON.getHeight()/2, Resources.PAUSE_BUTTON);
 		left = new Button(Resources.LEFT_UP.getWidth(), Info.SCREEN_HEIGHT - Resources.LEFT_UP.getHeight(), Resources.LEFT_UP, Resources.LEFT_UP);
 		right = new Button(Resources.RIGHT_UP.getWidth()*3, Info.SCREEN_HEIGHT - Resources.RIGHT_UP.getHeight(), Resources.RIGHT_UP, Resources.RIGHT_UP);
-		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.JUMP, Resources.JUMP);
-		place = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()*2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.scale( Resources.JUMP, 1, -1), Resources.scale(Resources.JUMP, 1, -1));
+		jump = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()/2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.JUMP);
+		place = new Button(Info.SCREEN_WIDTH - Resources.JUMP.getWidth()*2, Info.SCREEN_HEIGHT - Resources.JUMP.getHeight()/2, Resources.scale(Resources.JUMP, 1, -1));
 		
 		tilePlaceMode = new CheckBox(50 * Info.GUI_ZOOM, 50, "方块放置模式(测试)");
 		tilePlaceMode.setState(Settings.TILEPLACER_MODE);
@@ -54,7 +54,7 @@ public class GameScreen extends Screen
 		w.placeBlock(0, 8, 1);
 		w.placeBlock(1, 8, 1);
 		w.placeBlock(2, 8, 1);
-		w.addEntity(pl);
+		w.addPlayer(pl);
 	}
 	
 	public void draw(Canvas c)
@@ -79,8 +79,6 @@ public class GameScreen extends Screen
 		left.draw(c);
 		right.draw(c);
 		jump.draw(c);
-		//ahead.draw(c);
-		//back.draw(c);
 		place.draw(c);
 		
 		tilePlaceMode.draw(c);
@@ -154,15 +152,25 @@ public class GameScreen extends Screen
 			{
 				public void onTouchDown()
 				{
+					
 					pl.tp = -2;
-					pl.velocity.x = -0.1f;
-					pl.state = Entity.State.Left;
+					if(!w.hasBlock((int)pl.getPosition().x, (int)pl.getPosition().y))
+					{
+						pl.velocity.x = -0.125f;
+
+					}
+					else
+					{
+						//pl.setPosition(0, pl.getPosition().y);
+						pl.velocity.x = 0;
+					}
+					//pl.state = Entity.State.Left;
 				}
 
 				public void onTouchUp()
 				{
 					pl.velocity.x = 0;
-					pl.state = Entity.State.Idle;
+					//pl.state = Entity.State.Idle;
 				}
 			});
 
@@ -171,14 +179,23 @@ public class GameScreen extends Screen
 				public void onTouchDown()
 				{
 					pl.tp = 3;
-					pl.velocity.x = 0.1f;
-					pl.state = Entity.State.Right;
+					if(!w.hasBlock((int)pl.getPosition().x + 1, (int)pl.getPosition().y))
+					{
+						pl.velocity.x = 0.125f;
+						
+					}
+					else
+					{
+						//pl.setPosition(0, pl.getPosition().y);
+						pl.velocity.x = 0;
+					}
+					
 				}
 
 				public void onTouchUp()
 				{
 					pl.velocity.x = 0;
-					pl.state = Entity.State.Idle;
+					//pl.state = Entity.State.Idle;
 				}
 			});
 			
@@ -192,7 +209,8 @@ public class GameScreen extends Screen
 				
 				public void onTouchUp()
 				{
-					
+					if(!w.hasBlock((int)pl.position.x, (int)pl.position.y - 1))
+						pl.velocity.y = 0.2f;
 				}
 			});
 			
@@ -206,6 +224,10 @@ public class GameScreen extends Screen
 						if(w.getBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y) != 0)
 						{
 							w.placeBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y, 0);
+						}
+						else if(w.getBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y - 1) == 1 || (w.getBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y - 1) == 2))
+						{
+							w.placeBlock((int)pl.getPosition().x + pl.tp, (int)pl.getPosition().y, 2);
 						}
 						else
 						{

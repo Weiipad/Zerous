@@ -3,6 +3,7 @@ package com.zerous.zerous.screens.windows;
 import com.zerous.zerous.ui.*;
 import android.graphics.*;
 import com.zerous.zerous.*;
+import com.zerous.zerous.screens.*;
 
 public class LevelChooser extends Window
 {
@@ -12,13 +13,13 @@ public class LevelChooser extends Window
 	{
 		super();
 		game = g;
-		toGame = new Button(Info.SCREEN_WIDTH/2, bottom - Resources.START_BUTTON_UP.getHeight()/2, Resources.START_BUTTON_UP.getWidth(), Resources.SETTINGS_BUTTON_UP.getHeight());
+		toGame = new Button(Info.SCREEN_WIDTH/2, bottom - Resources.START_BUTTON.getHeight()/2, Resources.START_BUTTON.getWidth(), Resources.SETTINGS_BUTTON_UP.getHeight());
 		toGame.setText("开始");
 		toGame.setClickEvent(new Button.OnClickEvent()
 		{
 			public void onClick()
 			{
-				game.setScreen(game.gameScreen);
+				game.setScreen(new Test2Screen(game, game.mainScreen));
 				hide();
 			}
 		});

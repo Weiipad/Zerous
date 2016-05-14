@@ -8,9 +8,11 @@ import com.zerous.zerous.input.Input.*;
 public class AndroidInput implements Input
 {
 	TouchHandler touchHandler;
-	public AndroidInput(Context c, View v)
+	KeyboardHandler keyboardHandler;
+	public AndroidInput(View v)
 	{
 		touchHandler = new TouchHandler(v);
+		keyboardHandler = new KeyboardHandler(v);
 	}
 
 	@Override
@@ -28,8 +30,7 @@ public class AndroidInput implements Input
 	@Override
 	public boolean isKeyPressed(int keyCode)
 	{
-		// TODO: Implement this method
-		return false;
+		return keyboardHandler.isKeyPressed(keyCode);
 	}
 
 	@Override
@@ -47,7 +48,6 @@ public class AndroidInput implements Input
 	@Override
 	public List<Input.KeyEvent> getKeyEvents()
 	{
-		// TODO: Implement this method
-		return null;
+		return keyboardHandler.getKeyEvents();
 	}
 }

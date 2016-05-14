@@ -14,22 +14,21 @@ public class PlayScreen extends Screen
 	Window w;
 	static int a = 0;
 	static int speed = 0;
-	public PlayScreen(GameView g)
+	public PlayScreen(GameView g, Screen p)
 	{
-		super(g);
+		super(g, p);
 		
 		w = new PlayWindow();
 		
 		l = new Label(g, "一个为了不无聊而准备的界面");
 		l.setBackButtonTo(game.mainScreen);
 		
-		btn = new Button(80, Info.SCREEN_HEIGHT / 2, Resources.PAUSE_BUTTON_UP, Resources.PAUSE_BUTTON_DOWN);
+		btn = new Button(80, Info.SCREEN_HEIGHT / 2, Resources.PAUSE_BUTTON);
 		btn.setClickEvent(new Button.OnClickEvent()
 		{
 			public void onClick()
 			{
 				a++;
-				//speed+=1;
 			}
 		});
 		
@@ -42,7 +41,7 @@ public class PlayScreen extends Screen
 			}
 		};
 		
-		b = new Button(Info.SCREEN_WIDTH - Resources.PAUSE_BUTTON_UP.getWidth()/2, Resources.PAUSE_BUTTON_UP.getHeight()/2, Resources.PAUSE_BUTTON_UP, Resources.PAUSE_BUTTON_DOWN);
+		b = new Button(Info.SCREEN_WIDTH - Resources.PAUSE_BUTTON.getWidth()/2, Resources.PAUSE_BUTTON.getHeight()/2, Resources.PAUSE_BUTTON);
 		b.setClickEvent(bc);
 		
 		/*btn.setTouchEvent(new Button.OnTouchEvent()

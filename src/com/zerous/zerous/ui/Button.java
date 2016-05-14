@@ -4,14 +4,14 @@ import android.graphics.*;
 import com.zerous.zerous.*;
 import com.zerous.zerous.math.*;
 
-import com.zerous.zerous.math.Point;
+import com.zerous.zerous.math.Vec2;
 
 public class Button extends Ui
 {
 	private static final int COLOR_BUTTON_UP = 0xFF66CCFF;
 	private static final int COLOR_BUTTON_DOWN = COLOR_BUTTON_UP - 2105376;
 	
-	Point position;
+	Vec2 position;
 	public Size size;
 	public int count;
 	String text = null;
@@ -27,9 +27,10 @@ public class Button extends Ui
 	
 	public Button(float x, float y, float width, float height)
 	{
-		position = new Point(x, y);
+		position = new Vec2(x, y);
 		size = new Size(width, height);
 		paint = new Paint();
+		paint.setAlpha(0x50);
 		textPaint = new Paint();
 		bug = new Paint();
 		textPaint.setColor(Color.BLACK);
@@ -40,9 +41,20 @@ public class Button extends Ui
 	
 	public Button(float x, float y, Bitmap up, Bitmap down)
 	{
-		position = new Point(x, y);
+		position = new Vec2(x, y);
 		this.up = up;
 		this.down = down;
+		size = new Size(up.getWidth(), up.getHeight());
+		paint = new Paint();
+		bug = new Paint();
+		bug.setColor(Color.RED);
+	}
+	
+	public Button(float x, float y, ButtonSkin bs)
+	{
+		position = new Vec2(x, y);
+		up = bs.getUp();
+		down = bs.getDown();
 		size = new Size(up.getWidth(), up.getHeight());
 		paint = new Paint();
 		bug = new Paint();
@@ -127,7 +139,7 @@ public class Button extends Ui
 		}
 		else
 		{
-			c.drawBitmap(src, position.x - up.getWidth()/2, position.y - up.getHeight()/2, null);
+			c.drawBitmap(src, position.x - up.getWidth()/2, position.y - up.getHeight()/2, paint);
 			if(Settings.DEBUG)
 			{
 				c.drawLine(position.x - size.w/2, position.y - size.h/2, position.x + size.w/2, position.y - size.h/2, bug);

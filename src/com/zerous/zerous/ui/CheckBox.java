@@ -3,12 +3,12 @@ package com.zerous.zerous.ui;
 import android.graphics.*;
 import com.zerous.zerous.math.*;
 
-import com.zerous.zerous.math.Point;
+import com.zerous.zerous.math.Vec2;
 import com.zerous.zerous.*;
 
 public class CheckBox extends Ui
 {
-	Point position;
+	Vec2 position;
 	String name;
 	Size size;
 	Bitmap src, checked, unchecked;
@@ -16,7 +16,7 @@ public class CheckBox extends Ui
 	int count;
 	public CheckBox(float x, float y, String name)
 	{
-		position = new Point(x, y);
+		position = new Vec2(x, y);
 		checked = Resources.CHECKBOX_CHECKED;
 		unchecked = Resources.CHECKBOX_UNCHECKED;
 		this.name = name;

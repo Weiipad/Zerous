@@ -7,7 +7,7 @@ import com.zerous.zerous.*;
 public class PlayWindow extends Window
 {
 	Button back;
-	List l;
+	GameList l;
 	public PlayWindow()
 	{
 		super();
@@ -20,7 +20,7 @@ public class PlayWindow extends Window
 			}
 		});
 		
-		l = new List();
+		l = new GameList();
 		l.listY = top;
 	}
 

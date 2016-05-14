@@ -8,30 +8,31 @@ public class Entity extends GameObject
 {
 	public Vec2 velocity;
 	public boolean landed;
-	Vec2 position;
-	Bitmap body;
+	public Vec2 position;
+	public Vec2 drawingPosition, worldPosition;
+	public Bitmap body;
 	
-	float x, y;
+	float x = 1, y = 1;
 	
 	
 	public enum State
 	{
-		Forward, Back, Left, Right, Fall, Jump, Idle
+		Right, Left;
 	}
-	
-	public State state;
 	
 	public Entity(Bitmap body, Vec2 position)
 	{
 		this.position = position;
 		this.body = body;
 		this.velocity = new Vec2(0, 0);
+		this.drawingPosition = new Vec2(0, 0);
 	}
 	
 	public Entity(Vec2 pos)
 	{
 		position = pos;
 		velocity = new Vec2(0, 0);
+		this.drawingPosition = new Vec2(0, 0);
 	}
 	
 	public void setVelocity(Vec2 v)
@@ -47,6 +48,11 @@ public class Entity extends GameObject
 	public float getVelocityX()
 	{
 		return velocity.x;
+	}
+	
+	public void setWorldPosition(Vec2 pos)
+	{
+		worldPosition = pos;
 	}
 	
 	//设置坐标系
@@ -75,7 +81,6 @@ public class Entity extends GameObject
 	public void draw(Canvas c)
 	{
 		position.add(velocity);
-		c.drawBitmap(body, position.x * x, position.y * y, null);
-		//c.drawPoint(position.x * x, position.y * y, new Paint());
+		c.drawBitmap(body, worldPosition.x + (int)position.x * x, worldPosition.y + (int)position.y * y, null);
 	}
 }

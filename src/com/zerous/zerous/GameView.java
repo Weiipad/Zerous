@@ -42,7 +42,7 @@ public class GameView extends SurfaceView implements Runnable
 		holder = this.getHolder();
 		
 		context = c;
-		Core.input = new AndroidInput(c, this);
+		Core.input = new AndroidInput(this);
 		
 		if(!new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Info.GAME_PATH).exists())
 			new File(Environment.getExternalStorageDirectory()
@@ -60,11 +60,11 @@ public class GameView extends SurfaceView implements Runnable
 		
 		
 		mainScreen = new MainScreen(this);
-		gameScreen = new GameScreen(this);
-		playScreen = new PlayScreen(this);
-		settingScreen = new SettingScreen(this);
-		aboutScreen = new AboutScreen(this);
-		debugScreen = new DebugScreen(this);
+		gameScreen = new GameScreen(this, mainScreen);
+		playScreen = new PlayScreen(this, mainScreen);
+		settingScreen = new SettingScreen(this, mainScreen);
+		aboutScreen = new AboutScreen(this, mainScreen);
+		debugScreen = new DebugScreen(this, settingScreen);
 		
 		
 		p = new Paint();
@@ -118,63 +118,27 @@ public class GameView extends SurfaceView implements Runnable
 			
 			c = holder.lockCanvas();
 			currentScreen.draw(c);
+			currentScreen.drawChildren(c);
 			
 			if(c != null)
 				holder.unlockCanvasAndPost(c);
 		}
+	}
+
+	public boolean onBackPressed()
+	{
+		if(currentScreen.parent != null) 
+		{
+			setScreen(currentScreen.parent);
+			return false;
+		}
+		return true;
 	}
 	
 	public Input getInput()
 	{
 		return input;
 	}
-
-	/*@Override
-	public boolean onTouchEvent(MotionEvent event)
-	{
-		//Input.TOUCH_2_X = 0;
-		//Input.TOUCH_2_Y = 0;
-		try
-		{
-			OldInput.count = event.getPointerCount();
-			
-			OldInput.TOUCH_X = event.getX();
-			OldInput.TOUCH_Y = event.getY();
-			
-			if(event.getPointerCount() >= 2)
-			{
-				OldInput.TOUCH_2_X = event.getX(1);
-				OldInput.TOUCH_2_Y = event.getY(1);
-			}
-			else if(event.getAction() == event.ACTION_UP)
-			{
-				OldInput.TOUCH_2_X = OldInput.TOUCH_2_Y = 0;
-			}
-		}
-		catch(Exception e)
-		{
-			
-		}
-		
-		if(event.getAction() == event.ACTION_DOWN 
-		|| event.getAction() == event.ACTION_POINTER_DOWN )
-			OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_DOWN;
-		else if(event.getAction() == event.ACTION_UP
-		||event.getAction() == event.ACTION_POINTER_UP)
-		{
-			OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_UP;
-			//Input.TOUCH_X = Input.TOUCH_Y = Input.TOUCH_2_X = Input.TOUCH_2_Y = 0;
-		}
-		else if(event.getAction() == event.ACTION_MOVE)
-		{
-			OldInput.TOUCH_STATE = OldInput.TOUCH_STATE_MOVE;
-		}
-			
-		//Input.TOUCH_2_X = Input.TOUCH_2_Y = 0;
-		return true;
-	}*/
-	
-	
 	
 	public void setScreen(Screen scr)
 	{
